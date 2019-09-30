@@ -5,9 +5,9 @@ import java.sql.SQLException;
 public interface DAO<T> {
     void add(T object) throws SQLException;
 
-    T get(int id) throws SQLException;
+    T get(Integer id) throws SQLException;
 
     void update(T object) throws SQLException;
 
-    void delete(int id) throws SQLException;
+    void delete(Integer id) throws SQLException;
 }

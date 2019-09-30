@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import com.softserve.itacademy.ToBuyList.entity.List;
 
 public interface ListDAO extends DAO<List> {
-    ArrayList<List> getListsByUser(int idUser) throws SQLException;
+    ArrayList<List> getListsByUser(Integer idUser) throws SQLException;
 
-    ArrayList<List> getDoneListsByUser(int idUser) throws SQLException;
+    ArrayList<List> getDoneListsByUser(Integer idUser) throws SQLException;
 
-    ArrayList<List> getUndoneListsByUser(int idUser) throws SQLException;
+    ArrayList<List> getUndoneListsByUser(Integer idUser) throws SQLException;
 }
