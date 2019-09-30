@@ -15,7 +15,7 @@ public class DBConnection {
     }
 
     private static Connection initConnection() {
-        String url = "jdbc:mysql://localhost:3306/ToBuyList";
+        String url = "jdbc:mysql://localhost/ToBuyList?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
         String username = "root";
         String password = "rota2000";
 
