@@ -7,6 +7,7 @@ import java.util.Objects;
 public class Item {
     private Integer id;
     private Integer idList;
+    private String text;
     private LocalDate createDate;
     private LocalDate updateDate;
     private Boolean isDone;
@@ -14,9 +15,10 @@ public class Item {
     public Item() {
     }
 
-    public Item(Integer id, Integer idList, LocalDate createDate, LocalDate updateDate, Boolean isDone) {
+    public Item(Integer id, Integer idList, String text, LocalDate createDate, LocalDate updateDate, Boolean isDone) {
         this.id = id;
         this.idList = idList;
+        this.text = text;
         this.createDate = createDate;
         this.updateDate = updateDate;
         this.isDone = isDone;
@@ -36,6 +38,14 @@ public class Item {
 
     public void setIdList(Integer idList) {
         this.idList = idList;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 
     public LocalDate getCreateDate() {
@@ -69,6 +79,7 @@ public class Item {
         Item item = (Item) o;
         return id.equals(item.id) &&
                 idList.equals(item.idList) &&
+                text.equals(item.text) &&
                 createDate.equals(item.createDate) &&
                 updateDate.equals(item.updateDate) &&
                 isDone.equals(item.isDone);
@@ -84,6 +95,7 @@ public class Item {
         return "Item{" +
                 "id=" + id +
                 ", idList=" + idList +
+                ", text='" + text + '\'' +
                 ", createDate=" + createDate +
                 ", updateDate=" + updateDate +
                 ", isDone=" + isDone +
