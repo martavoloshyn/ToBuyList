@@ -80,6 +80,7 @@ public class ListDAOImpl implements ListDAO {
             list.setName(set.getString("name"));
             list.setCreateDate(set.getDate("createdate").toLocalDate());
             list.setUpdateDate(set.getDate("updatedate").toLocalDate());
+            list.setDone(set.getBoolean("isdone"));
         }
         set.close();
         statement.close();
