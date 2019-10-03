@@ -53,12 +53,10 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void add(User object) throws SQLException {
-        String query = "INSERT INTO user (iduser, email, password, username ) VALUES (?,?,?,?)";
+        String query = "INSERT INTO user (email, password) VALUES (?,?)";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1,object.getId());
-        statement.setString(2,object.getEmail());
-        statement.setString(3,object.getPassword());
-        statement.setString(4,object.getUsername());
+        statement.setString(1,object.getEmail());
+        statement.setString(2,object.getPassword());
         statement.execute();
         statement.close();
     }

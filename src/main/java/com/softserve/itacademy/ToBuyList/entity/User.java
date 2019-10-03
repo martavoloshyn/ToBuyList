@@ -11,11 +11,9 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String email, String password, String username) {
-        this.id = id;
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
-        this.username = username;
     }
 
     public Integer getId() {
