@@ -31,6 +31,9 @@
             <div class="btn-text">SIGN UP</div>
         </button>
     </div>
+    <div class="row justify-content-center align-self-center">
+        <small class="form-text text-muted">${error} </small>
+    </div>
     <div class="row justify-content-center align-self-center sign-in-form" id="sign-in-form" hidden>
         <form>
             <div class="form-group">
@@ -48,25 +51,27 @@
         </form>
     </div>
     <div class="row justify-content-center align-self-center sign-up-form" id="sign-up-form" hidden>
-        <form>
+        <form method="post" action="http://localhost:9090/ToBuyList_war_exploded/signUp" id="sign-up">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp"
-                       placeholder="Enter email">
+                <input type="email" name="email" class="form-control" id="exampleInputEmail2"
+                       aria-describedby="emailHelp"
+                       placeholder="Enter email" required>
                 <small id="emailHelp2" class="form-text text-muted">We'll never share your email with anyone else.
                 </small>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+                <input type="password" name="password" class="form-control" id="exampleInputPassword2"
+                       placeholder="Password" required>
                 <small id="passwordHelp" class="form-text text-muted" hidden>Passwords are not equal.
                 </small>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Repeat password</label>
-                <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
+                <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password" required>
             </div>
-            <button type="button" class="btn btn-primary" onclick="signUp()">Submit</button>
+            <button type="button" class="btn btn-primary" onclick="signUp()">SIGN UP</button>
         </form>
     </div>
 </div>
