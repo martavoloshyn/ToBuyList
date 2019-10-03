@@ -15,7 +15,11 @@ public class UserServiceImpl implements UserService {
 
     private UserDAOImpl userDAO;
 
-    public String encodePassword(String password){
+    public UserServiceImpl() {
+        userDAO = new UserDAOImpl();
+    }
+
+    public String encodePassword(String password) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] messageDigest = md.digest(password.getBytes());
@@ -25,27 +29,37 @@ public class UserServiceImpl implements UserService {
                 hashtext = "0" + hashtext;
             }
             return hashtext;
-        }
-        catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
     }
 
     public boolean isValidEmail(String email) {
         ArrayList<String> allEmails = getAllEmails();
-        if (allEmails.contains(email)) {
-            return false;
-        } else {
-            return true;
-        }
+        return !allEmails.contains(email);
     }
 
-    public UserServiceImpl() {
-        userDAO = new UserDAOImpl();
+    public boolean isValidUsername(String username){
+        ArrayList<String> allUsernames = getAllUsernames();
+        return !allUsernames.contains(username);
+    }
+
+    public boolean isValid(String email, String password) {
+        User user = getUserByEmail(email);
+        if (user == null) {
+            return false;
+        } else {
+            return encodePassword(password).equals(user.getPassword());
+        }
     }
 
     @Override
     public User getUserByEmail(String email) {
+        try {
+            return userDAO.getUserByEmail(email);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 

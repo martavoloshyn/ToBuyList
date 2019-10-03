@@ -35,17 +35,17 @@
         <small class="form-text text-muted">${error} </small>
     </div>
     <div class="row justify-content-center align-self-center sign-in-form" id="sign-in-form" hidden>
-        <form>
+        <form method="post" action="http://localhost:9090/ToBuyList_war_exploded/signIn" id="sign-in">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                        placeholder="Enter email">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
                 </small>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -70,6 +70,11 @@
             <div class="form-group">
                 <label for="exampleInputPassword1">Repeat password</label>
                 <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputUsername">Username</label>
+                <input type="text" name="username" class="form-control" id="exampleInputUsername"
+                       placeholder="Enter username" required>
             </div>
             <button type="button" class="btn btn-primary" onclick="signUp()">SIGN UP</button>
         </form>
