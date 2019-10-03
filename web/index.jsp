@@ -47,7 +47,7 @@
                 <label for="exampleInputPassword1">Password</label>
                 <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">SIGN IN</button>
         </form>
     </div>
     <div class="row justify-content-center align-self-center sign-up-form" id="sign-up-form" hidden>
