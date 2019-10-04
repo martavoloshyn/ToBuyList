@@ -26,7 +26,9 @@ public class SignUpServlet extends HttpServlet {
             HttpSession httpSession = req.getSession();
             httpSession.setAttribute("id", user.getId());
             httpSession.setAttribute("email", user.getEmail());
-            req.getRequestDispatcher("webapp/pages/home.jsp").forward(req, resp);
+            req.getRequestDispatcher("/homePage").forward(req,resp);
+
+        //    req.getRequestDispatcher("webapp/pages/home.jsp").forward(req, resp);
         } else {
             req.setAttribute("error", "This email or username is already used. Please try another one.");
             req.getRequestDispatcher("index.jsp").forward(req, resp);
