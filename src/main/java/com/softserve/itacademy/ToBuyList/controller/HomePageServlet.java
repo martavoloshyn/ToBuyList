@@ -15,13 +15,14 @@ import java.util.ArrayList;
 
 @WebServlet("/homePage")
 public class HomePageServlet extends HttpServlet {
+
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ListService listService = new ListServiceImpl();
         HttpSession httpSession = req.getSession(false);
         Integer idUser = (Integer) httpSession.getAttribute("id");
         ArrayList<List> listsByUser = listService.getListsByUser(idUser);
-        req.setAttribute("listsByUser",listsByUser);
-        req.getRequestDispatcher("webapp/pages/home.jsp").forward(req,resp);
+        req.setAttribute("listsByUser", listsByUser);
+        req.getRequestDispatcher("webapp/pages/home.jsp").forward(req, resp);
     }
 }
