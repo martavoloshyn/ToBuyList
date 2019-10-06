@@ -26,7 +26,7 @@
                 <thead>
                 <c:forEach items="${listsByUser}" var="list" varStatus="status">
                     <tr>
-                        <th scope="col">${list.name}</th>
+                        <th scope="col"><a href="http://localhost:9090/ToBuyList_war_exploded/itemPage?idList=${list.id}"><button>${list.name}</button></a></th>
                     </tr>
                 </c:forEach>
                 </thead>

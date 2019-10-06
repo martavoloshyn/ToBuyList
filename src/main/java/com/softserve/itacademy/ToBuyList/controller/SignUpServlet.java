@@ -23,12 +23,8 @@ public class SignUpServlet extends HttpServlet {
         if (userService.isValidEmail(email) && userService.isValidUsername(username)) {
             User user = new User(email, userService.encodePassword(password),username);
             userService.add(user);
-            HttpSession httpSession = req.getSession();
-            httpSession.setAttribute("id", user.getId());
-            httpSession.setAttribute("email", user.getEmail());
+            req.setAttribute("id", user.getId());
             req.getRequestDispatcher("/homePage").forward(req,resp);
-
-        //    req.getRequestDispatcher("webapp/pages/home.jsp").forward(req, resp);
         } else {
             req.setAttribute("error", "This email or username is already used. Please try another one.");
             req.getRequestDispatcher("index.jsp").forward(req, resp);

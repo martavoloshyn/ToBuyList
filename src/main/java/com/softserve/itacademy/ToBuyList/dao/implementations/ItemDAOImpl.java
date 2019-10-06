@@ -18,6 +18,7 @@ public class ItemDAOImpl implements ItemDAO {
     public ArrayList<Item> getItemsByList(Integer idList) throws SQLException {
         String query = "SELECT * FROM item WHERE idlist=?";
         PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1,idList);
         return getItems(statement);
     }
 
