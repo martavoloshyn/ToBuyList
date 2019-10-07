@@ -16,17 +16,26 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/webapp/js/item.js"></script>
 </head>
 <body>
 <jsp:include page="../components/header.jsp"/>
 <div class="container">
     <div class="row justify-content-center align-self-center">
         <div class="col-md-6">
-            <table class="table">
+            <div class="filter filter-basic">
+                <div class="filter-nav">
+                    <button class="btn btn-primary active" id="all" onclick="setActive(id,'true','false');sendRequest('http://localhost:9090/ToBuyList_war_exploded/filterItems?criterion='+id+'&idList='+${items[0].idList});">All</button>
+                    <button class="btn btn-primary" id="true" onclick="setActive(id, 'all', 'false');sendRequest('http://localhost:9090/ToBuyList_war_exploded/filterItems?criterion='+id+'&idList='+${items[0].idList});">Done</button>
+                    <button class="btn btn-primary" id="false" onclick="setActive(id, 'all','true');sendRequest('http://localhost:9090/ToBuyList_war_exploded/filterItems?criterion='+id+'&idList='+${items[0].idList});">Undone</button>
+                </div>
+            </div>
+            <table class="table" id="items">
                 <thead>
                 <c:forEach items="${items}" var="item" varStatus="status">
                     <tr>
-                        <th scope="col">${item.text}</th>
+                        <th>${item.text}</th>
                     </tr>
                 </c:forEach>
                 </thead>

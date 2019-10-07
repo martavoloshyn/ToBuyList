@@ -26,11 +26,12 @@ public class ItemDAOImpl implements ItemDAO {
     public ArrayList<Item> getDoneItemsByList(Integer idList) throws SQLException {
         String query = "SELECT * FROM item WHERE idlist=? AND isdone=true";
         PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1,idList);
         return getItems(statement);
     }
 
     private ArrayList<Item> getItems(PreparedStatement statement) throws SQLException {
-        ArrayList<Item> items = new ArrayList<>();
+        ArrayList<Item> items = new ArrayList<Item>();
         ResultSet set = statement.executeQuery();
         while (set.next()) {
             Item item = new Item();
@@ -39,6 +40,7 @@ public class ItemDAOImpl implements ItemDAO {
             item.setText(set.getString("text"));
             item.setCreateDate(set.getDate("createdate").toLocalDate());
             item.setUpdateDate(set.getDate("updatedate").toLocalDate());
+            item.setDone(set.getBoolean(("isdone")));
             items.add(item);
         }
         set.close();
@@ -50,6 +52,7 @@ public class ItemDAOImpl implements ItemDAO {
     public ArrayList<Item> getUndoneItemsByList(Integer idList) throws SQLException {
         String query = "SELECT * FROM item WHERE idlist=? AND isdone=false";
         PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1,idList);
         return getItems(statement);
     }
 

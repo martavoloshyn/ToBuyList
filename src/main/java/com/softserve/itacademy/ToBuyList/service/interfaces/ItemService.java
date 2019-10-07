@@ -10,4 +10,6 @@ public interface ItemService extends Service<Item> {
     ArrayList<Item> getDoneItemsByList(Integer idList);
 
     ArrayList<Item> getUndoneItemsByList(Integer idList);
+
+    ArrayList<Item> filter(String criterion,Integer idList);
 }

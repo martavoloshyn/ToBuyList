@@ -27,17 +27,41 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ArrayList<Item> getDoneItemsByList(Integer idList) {
+        try {
+            return itemDAO.getDoneItemsByList(idList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public ArrayList<Item> getUndoneItemsByList(Integer idList) {
+        try {
+            return itemDAO.getUndoneItemsByList(idList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
-    public void add(Item object) {
+    public ArrayList<Item> filter(String criterion, Integer idList) {
+        if (criterion.equals("all")) {
+            return getItemsByList(idList);
+        }
+        boolean isDone = Boolean.parseBoolean(criterion);
+        ArrayList<Item> filteredItems = new ArrayList<>();
+        if (isDone) {
+            filteredItems = getDoneItemsByList(idList);
+        } else {
+            filteredItems = getUndoneItemsByList(idList);
+        }
+        return filteredItems;
+    }
 
+    @Override
+    public void add(Item object) {
     }
 
     @Override
