@@ -1,6 +1,7 @@
 package com.softserve.itacademy.ToBuyList.dao.implementations;
 
 import com.softserve.itacademy.ToBuyList.dao.interfaces.ListDAO;
+import com.softserve.itacademy.ToBuyList.entity.Item;
 import com.softserve.itacademy.ToBuyList.entity.List;
 import com.softserve.itacademy.ToBuyList.jdbc.DBConnection;
 

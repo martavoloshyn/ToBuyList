@@ -25,12 +25,38 @@ public class ListServiceImpl implements ListService {
     }
 
     @Override
+    public ArrayList<List> filter(String criterion, Integer idUser) {
+        if (criterion.equals("all")) {
+            return getListsByUser(idUser);
+        }
+        boolean isDone = Boolean.parseBoolean(criterion);
+        ArrayList<List> filteredLists = new ArrayList<>();
+        if (isDone) {
+            filteredLists = getDoneListsByUser(idUser);
+        } else {
+            filteredLists = getUndoneListsByUser(idUser);
+        }
+        return filteredLists;
+    }
+
+    @Override
     public ArrayList<List> getDoneListsByUser(Integer idUser) {
+        try {
+            return listDAO.getDoneListsByUser(idUser);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public ArrayList<List> getUndoneListsByUser(Integer idUser) {
+        try {
+            return
+                    listDAO.getUndoneListsByUser(idUser);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
