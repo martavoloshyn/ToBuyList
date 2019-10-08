@@ -11,19 +11,34 @@ function sendRequest(link) {
             success: function (filteredLists) {
                 document.getElementById("lists").innerHTML = "";
                 $.each(filteredLists, function (index, list) {
-                    var $thead = $("<thead>").appendTo("#lists");
-                    var $tr = $("<tr>").appendTo($thead);
-                    var $th = $("<th>").appendTo($tr);
-                    var $a = $("<a>",{href: "http://localhost:9090/ToBuyList_war_exploded/itemPage?idList="+list.id.toString(), style: "text-decoration:none;color:black"}).text(list.name).prependTo($th);
-                    //alert(list);
+                    var $li = $("<li>",{class:"list-group-item"}).prependTo("#lists");
+                    var $div = $("<div>",{style:"text-align:right;"}).prependTo($li);
+                    var $button = $("<button>", {type:"button", class:"btn btn-primary", onclick:"deleteList("+list.id.toString()+")"}).prependTo($div);
+                    $("<i>", {class:"fas fa-trash-alt"}).prependTo($button);
+                    var $a = $("<a>",{href: "http://localhost:9090/ToBuyList_war_exploded/itemPage?idList="+list.id.toString(), style: "text-decoration:none;color:black"}).text(list.name).prependTo($li);
                     var $input = $("<input>", {
                         type: "checkbox",
                         id: list.id.toString(),
                         onchange: "changeDone('http://localhost:9090/ToBuyList_war_exploded/changeListDone?idList="+list.id.toString()+"')",
-                        checked: list.isDone
-                    }).prependTo($th);
-                    //var $label = $("<label>", {text: item.text, for: item.id.toString()}).prependTo($th);
+                        checked: list.isDone,
+                        style:"margin-right: 5px;"
+                    }).prependTo($div);
                 });
+            },
+            error: function () {
+                alert('error');
+            }
+        }
+    )
+}
+
+function deleteList(idList) {
+    $.ajax({
+            url: 'http://localhost:9090/ToBuyList_war_exploded/deleteList?idList='+idList,
+            type: 'delete',
+            cache: false,
+            success: function () {
+                document.getElementById("all").click();
             },
             error: function () {
                 alert('error');

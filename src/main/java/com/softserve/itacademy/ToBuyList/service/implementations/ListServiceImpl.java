@@ -105,6 +105,10 @@ public class ListServiceImpl implements ListService {
 
     @Override
     public void delete(Integer id) {
-
+        try {
+            listDAO.delete(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

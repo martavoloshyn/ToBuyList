@@ -16,8 +16,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/b9192cac7d.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/webapp/js/home3.js"></script>
+    <script src="${pageContext.request.contextPath}/webapp/js/home4.js"></script>
 </head>
 <body>
 <jsp:include page="../components/header.jsp"/>
@@ -31,15 +32,16 @@
                     <button class="btn btn-primary" id="false" onclick="setActive(id, 'all','true');sendRequest('http://localhost:9090/ToBuyList_war_exploded/filterLists?criterion='+id+'&idUser='+${listsByUser[0].idUser});">Undone</button>
                 </div>
             </div>
-            <table class="table" id="lists">
-
-            </table>
-            <form action="addList" method="post">
+            <form action="addList" method="post" style="margin-top:10px;">
                 <div class="add-items d-flex"><input type="text" name="listName" class="form-control todo-list-input"
                                                      placeholder="What list do you need to create?">
-                    <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn">Add</button>
+                    <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn" style="margin-left:5px;">Add</button>
                 </div>
             </form>
+            <ul class="list-group" id="lists">
+
+            </ul>
+
         </div>
     </div>
 </div>

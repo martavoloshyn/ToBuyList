@@ -107,7 +107,7 @@ public class ListDAOImpl implements ListDAO {
 
     @Override
     public void delete(Integer id) throws SQLException {
-        String query = "DELETE FROM list WHERE id=?";
+        String query = "DELETE FROM list WHERE idlist=?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1,id);
         statement.execute();
