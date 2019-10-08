@@ -5,6 +5,7 @@ import com.softserve.itacademy.ToBuyList.entity.Item;
 import com.softserve.itacademy.ToBuyList.service.interfaces.ItemService;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ItemServiceImpl implements ItemService {
@@ -68,7 +69,19 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public void createItem(Integer idList, String newItemText) {
+        Item newItem = new Item(idList,newItemText, LocalDate.now(),LocalDate.now(),false);
+        System.out.println(newItem);
+        add(newItem);
+    }
+
+    @Override
     public void add(Item object) {
+        try {
+            itemDAO.add(object);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override

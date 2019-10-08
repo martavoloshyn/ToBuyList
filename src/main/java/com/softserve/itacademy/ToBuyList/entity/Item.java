@@ -15,8 +15,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(Integer id, Integer idList, String text, LocalDate createDate, LocalDate updateDate, Boolean isDone) {
-        this.id = id;
+    public Item(Integer idList, String text, LocalDate createDate, LocalDate updateDate, Boolean isDone) {
         this.idList = idList;
         this.text = text;
         this.createDate = createDate;

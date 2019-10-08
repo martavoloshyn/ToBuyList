@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -21,5 +22,10 @@ public class ItemsPageServlet extends HttpServlet {
         ArrayList<Item> itemsByList = itemService.getItemsByList(idList);
         req.setAttribute("items", itemsByList);
         req.getRequestDispatcher("webapp/pages/item.jsp").forward(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doGet(req,resp);
     }
 }

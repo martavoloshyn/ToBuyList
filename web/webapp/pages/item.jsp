@@ -43,6 +43,12 @@
             <table class="table" id="items">
 
             </table>
+            <form action="addItem?idList=${items[0].idList}" method="post">
+                <div class="add-items d-flex"><input type="text" name="itemText" class="form-control todo-list-input"
+                                                     placeholder="What do you need to buy?">
+                    <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn">Add</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

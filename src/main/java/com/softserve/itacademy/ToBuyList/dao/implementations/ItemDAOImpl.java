@@ -58,14 +58,13 @@ public class ItemDAOImpl implements ItemDAO {
 
     @Override
     public void add(Item object) throws SQLException {
-        String query = "INSERT INTO item (iditem, idlist, text, createdate,updatedate, isdone ) VALUES (?,?,?,?,?,?)";
+        String query = "INSERT INTO item (idlist, text, createdate,updatedate, isdone ) VALUES (?,?,?,?,?)";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1,object.getId());
-        statement.setInt(2,object.getIdList());
-        statement.setString(3, object.getText());
-        statement.setDate(4, Date.valueOf(object.getCreateDate()));
-        statement.setDate(5,Date.valueOf(object.getUpdateDate()));
-        statement.setBoolean(6,object.getDone());
+        statement.setInt(1,object.getIdList());
+        statement.setString(2, object.getText());
+        statement.setDate(3, Date.valueOf(object.getCreateDate()));
+        statement.setDate(4,Date.valueOf(object.getUpdateDate()));
+        statement.setBoolean(5,object.getDone());
         statement.execute();
         statement.close();
     }

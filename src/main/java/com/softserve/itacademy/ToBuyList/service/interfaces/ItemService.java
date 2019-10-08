@@ -14,4 +14,6 @@ public interface ItemService extends Service<Item> {
     ArrayList<Item> filter(String criterion,Integer idList);
 
     void changeDoneById (Integer idItem);
+
+    void createItem (Integer idList, String newItemText);
 }
