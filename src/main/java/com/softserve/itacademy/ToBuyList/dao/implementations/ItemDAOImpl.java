@@ -80,7 +80,7 @@ public class ItemDAOImpl implements ItemDAO {
         if (set.next()) {
             item.setId(set.getInt("iditem"));
             item.setIdList(set.getInt("idlist"));
-            item.setText(set.getString("name"));
+            item.setText(set.getString("text"));
             item.setCreateDate(set.getDate("createdate").toLocalDate());
             item.setUpdateDate(set.getDate("updatedate").toLocalDate());
             item.setDone(set.getBoolean("isdone"));

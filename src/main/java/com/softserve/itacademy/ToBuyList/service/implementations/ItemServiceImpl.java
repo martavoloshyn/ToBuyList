@@ -61,17 +61,33 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public void changeDoneById(Integer idItem) {
+        Item item = get(idItem);
+        item.setDone(!item.getDone());
+        update(item);
+    }
+
+    @Override
     public void add(Item object) {
     }
 
     @Override
     public Item get(Integer id) {
+        try {
+            return itemDAO.get(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public void update(Item object) {
-
+        try {
+            itemDAO.update(object);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
