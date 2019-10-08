@@ -37,9 +37,6 @@ function changeDone(link) {
     $.ajax({
             url: link,
             type: 'post',
-            success: function () {
-                alert("ok");
-            },
             error: function () {
                 alert('error');
             }
