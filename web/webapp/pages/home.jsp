@@ -32,14 +32,14 @@
                 </div>
             </div>
             <table class="table" id="lists">
-                <%--<thead>
-                <c:forEach items="${listsByUser}" var="list" varStatus="status">
-                    <tr>
-                        <th scope="col"><a href="http://localhost:9090/ToBuyList_war_exploded/itemPage?idList=${list.id}"><button>${list.name}</button></a></th>
-                    </tr>
-                </c:forEach>
-                </thead>--%>
+
             </table>
+            <form action="addList" method="post">
+                <div class="add-items d-flex"><input type="text" name="listName" class="form-control todo-list-input"
+                                                     placeholder="What list do you need to create?">
+                    <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn">Add</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

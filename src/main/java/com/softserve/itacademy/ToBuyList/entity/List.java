@@ -14,8 +14,7 @@ public class List {
     public List() {
     }
 
-    public List(Integer id, Integer idUser, String name, LocalDate createDate, LocalDate updateDate, Boolean isDone) {
-        this.id = id;
+    public List(Integer idUser, String name, LocalDate createDate, LocalDate updateDate, Boolean isDone) {
         this.idUser = idUser;
         this.name = name;
         this.createDate = createDate;

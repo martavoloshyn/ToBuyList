@@ -15,4 +15,6 @@ public interface ListService extends Service<List> {
     public ArrayList<List> filter(String criterion, Integer idUser);
 
     void changeDoneById (Integer idList);
+
+    void createList(Integer idUser,String newListName);
 }

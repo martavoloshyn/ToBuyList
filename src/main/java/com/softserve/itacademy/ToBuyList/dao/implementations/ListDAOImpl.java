@@ -60,14 +60,13 @@ public class ListDAOImpl implements ListDAO {
 
     @Override
     public void add(List object) throws SQLException {
-        String query = "INSERT INTO list (idlist, iduser, name, createdate,updatedate, isdone ) VALUES (?,?,?,?,?,?)";
+        String query = "INSERT INTO list (iduser, name, createdate,updatedate, isdone ) VALUES (?,?,?,?,?)";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1,object.getId());
-        statement.setInt(2,object.getIdUser());
-        statement.setString(3, object.getName());
-        statement.setDate(4,Date.valueOf(object.getCreateDate()));
-        statement.setDate(5,Date.valueOf(object.getUpdateDate()));
-        statement.setBoolean(6,object.getDone());
+        statement.setInt(1,object.getIdUser());
+        statement.setString(2, object.getName());
+        statement.setDate(3,Date.valueOf(object.getCreateDate()));
+        statement.setDate(4,Date.valueOf(object.getUpdateDate()));
+        statement.setBoolean(5,object.getDone());
         statement.execute();
         statement.close();
     }

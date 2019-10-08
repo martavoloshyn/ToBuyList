@@ -6,6 +6,7 @@ import com.softserve.itacademy.ToBuyList.entity.List;
 import com.softserve.itacademy.ToBuyList.service.interfaces.ListService;
 
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ListServiceImpl implements ListService {
@@ -48,6 +49,12 @@ public class ListServiceImpl implements ListService {
     }
 
     @Override
+    public void createList(Integer idUser, String newListName) {
+        List newList = new List(idUser,newListName, LocalDate.now(),LocalDate.now(),false);
+        add(newList);
+    }
+
+    @Override
     public ArrayList<List> getDoneListsByUser(Integer idUser) {
         try {
             return listDAO.getDoneListsByUser(idUser);
@@ -70,7 +77,11 @@ public class ListServiceImpl implements ListService {
 
     @Override
     public void add(List object) {
-
+        try {
+            listDAO.add(object);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
