@@ -41,18 +41,7 @@
                 </div>
             </div>
             <table class="table" id="items">
-                <%--<thead>
-                <c:forEach items="${items}" var="item" varStatus="status">
-                    <tr>
-                        <th>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="${item.id}" onchange="changeDone('http://localhost:9090/ToBuyList_war_exploded/changeDone?itemId='+${item.id})" >
-                                <label class="form-check-label" for="${item.id}">${item.text}</label>
-                            </div>
-                        </th>
-                    </tr>
-                </c:forEach>
-                </thead>--%>
+
             </table>
         </div>
     </div>
