@@ -16,8 +16,10 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/b9192cac7d.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/webapp/js/item1.js"></script>
+    <script src="${pageContext.request.contextPath}/webapp/js/item2.js"></script>
+    <link href="${pageContext.request.contextPath}/webapp/css/item.css" rel="stylesheet">
 </head>
 <body>
 <jsp:include page="../components/header.jsp"/>
@@ -40,15 +42,16 @@
                     </button>
                 </div>
             </div>
-            <table class="table" id="items">
-
-            </table>
-            <form action="addItem?idList=${items[0].idList}" method="post">
+            <form action="addItem?idList=${items[0].idList}" method="post" style="margin-top:10px;">
                 <div class="add-items d-flex"><input type="text" name="itemText" class="form-control todo-list-input"
                                                      placeholder="What do you need to buy?">
-                    <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn">Add</button>
+                    <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn" style="margin-left:5px;">Add</button>
                 </div>
             </form>
+            <ul class="list-group" id="items">
+
+            </ul>
+
         </div>
     </div>
 </div>

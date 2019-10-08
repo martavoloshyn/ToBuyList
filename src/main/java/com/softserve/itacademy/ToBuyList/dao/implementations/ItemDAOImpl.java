@@ -105,7 +105,7 @@ public class ItemDAOImpl implements ItemDAO {
 
     @Override
     public void delete(Integer id) throws SQLException {
-        String query = "DELETE FROM item WHERE id=?";
+        String query = "DELETE FROM item WHERE iditem=?";
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1,id);
         statement.execute();

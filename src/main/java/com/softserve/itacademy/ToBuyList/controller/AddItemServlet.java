@@ -18,5 +18,6 @@ public class AddItemServlet extends HttpServlet {
         Integer idList = Integer.parseInt(req.getParameter("idList"));
         String newItemText = req.getParameter("itemText");
         itemService.createItem(idList,newItemText);
+        resp.sendRedirect(req.getContextPath()+"/itemPage?idList="+idList.toString());
     }
 }

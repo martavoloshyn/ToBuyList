@@ -105,6 +105,10 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void delete(Integer id) {
-
+        try {
+            itemDAO.delete(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
