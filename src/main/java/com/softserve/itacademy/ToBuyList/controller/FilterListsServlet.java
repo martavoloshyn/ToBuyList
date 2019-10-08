@@ -23,7 +23,6 @@ public class FilterListsServlet extends HttpServlet {
         Integer idUser = Integer.parseInt(req.getParameter("idUser"));
         String criterion = req.getParameter("criterion");
         ArrayList<List> requestedLists = listService.filter(criterion,idUser);
-        System.out.println(requestedLists);
         String json = new Gson().toJson(requestedLists);
 
         resp.setContentType("application/json");
