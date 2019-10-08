@@ -40,6 +40,7 @@
                             onclick="setActive(id, 'all','true');sendRequest('http://localhost:9090/ToBuyList_war_exploded/filterItems?criterion='+id+'&idList='+${items[0].idList});">
                         Undone
                     </button>
+                    <a href="http://localhost:9090/ToBuyList_war_exploded/logout"><button class="btn btn-btn-dark"><i class="fas fa-door-open"></i></button></a>
                 </div>
             </div>
             <form action="addItem?idList=${items[0].idList}" method="post" style="margin-top:10px;">
