@@ -17,7 +17,7 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/webapp/js/home.js"></script>
+    <script src="${pageContext.request.contextPath}/webapp/js/home3.js"></script>
 </head>
 <body>
 <jsp:include page="../components/header.jsp"/>
@@ -32,13 +32,13 @@
                 </div>
             </div>
             <table class="table" id="lists">
-                <thead>
+                <%--<thead>
                 <c:forEach items="${listsByUser}" var="list" varStatus="status">
                     <tr>
                         <th scope="col"><a href="http://localhost:9090/ToBuyList_war_exploded/itemPage?idList=${list.id}"><button>${list.name}</button></a></th>
                     </tr>
                 </c:forEach>
-                </thead>
+                </thead>--%>
             </table>
         </div>
     </div>

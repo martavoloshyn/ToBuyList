@@ -13,4 +13,6 @@ public interface ListService extends Service<List> {
     ArrayList<List> getUndoneListsByUser(Integer idUser);
 
     public ArrayList<List> filter(String criterion, Integer idUser);
+
+    void changeDoneById (Integer idList);
 }

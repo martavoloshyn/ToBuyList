@@ -19,18 +19,20 @@ public class ListDAOImpl implements ListDAO {
     @Override
     public ArrayList<List> getListsByUser(Integer idUser) throws SQLException {
         String query = "SELECT * FROM list WHERE iduser=?";
-        return getLists(query,idUser);
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1,idUser);
+        return getLists(statement);
     }
 
     @Override
     public ArrayList<List> getDoneListsByUser(Integer idUser) throws SQLException {
         String query = "SELECT * FROM list WHERE iduser=? AND isdone=true";
-        return getLists(query,idUser);
-    }
-
-    private ArrayList<List> getLists(String query,Integer idUser) throws SQLException {
         PreparedStatement statement = connection.prepareStatement(query);
         statement.setInt(1,idUser);
+        return getLists(statement);
+    }
+
+    private ArrayList<List> getLists(PreparedStatement statement) throws SQLException {
         ArrayList<List> lists = new ArrayList<>();
         ResultSet set = statement.executeQuery();
         while (set.next()) {
@@ -40,6 +42,7 @@ public class ListDAOImpl implements ListDAO {
             list.setName(set.getString("name"));
             list.setCreateDate(set.getDate("createdate").toLocalDate());
             list.setUpdateDate(set.getDate("updatedate").toLocalDate());
+            list.setDone(set.getBoolean("isdone"));
             lists.add(list);
         }
         set.close();
@@ -50,7 +53,9 @@ public class ListDAOImpl implements ListDAO {
     @Override
     public ArrayList<List> getUndoneListsByUser(Integer idUser) throws SQLException {
         String query = "SELECT * FROM list WHERE iduser=? AND isdone=false";
-        return getLists(query,idUser);
+        PreparedStatement statement = connection.prepareStatement(query);
+        statement.setInt(1,idUser);
+        return getLists(statement);
     }
 
     @Override

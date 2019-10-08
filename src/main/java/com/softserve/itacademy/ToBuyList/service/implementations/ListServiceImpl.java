@@ -16,6 +16,7 @@ public class ListServiceImpl implements ListService {
     }
     @Override
     public ArrayList<List> getListsByUser(Integer idUser) {
+        System.out.println(idUser);
         try {
             return listDAO.getListsByUser(idUser);
         } catch (SQLException e) {
@@ -37,6 +38,13 @@ public class ListServiceImpl implements ListService {
             filteredLists = getUndoneListsByUser(idUser);
         }
         return filteredLists;
+    }
+
+    @Override
+    public void changeDoneById(Integer idList) {
+        List list = get(idList);
+        list.setDone(!list.getDone());
+        update(list);
     }
 
     @Override
@@ -67,12 +75,21 @@ public class ListServiceImpl implements ListService {
 
     @Override
     public List get(Integer id) {
+        try {
+            return listDAO.get(id);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
     @Override
     public void update(List object) {
-
+        try {
+            listDAO.update(object);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
