@@ -21,6 +21,7 @@ public class ItemsPageServlet extends HttpServlet {
         ItemServiceImpl itemService = new ItemServiceImpl();
         ArrayList<Item> itemsByList = itemService.getItemsByList(idList);
         req.setAttribute("items", itemsByList);
+        req.setAttribute("idList",idList);
         req.getRequestDispatcher("webapp/pages/item.jsp").forward(req, resp);
     }
 }

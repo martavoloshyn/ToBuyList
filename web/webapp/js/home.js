@@ -6,7 +6,7 @@ function setActive(id, id1, id2) {
 
 function sendRequest(criterion, idUser) {
     $.ajax({
-        url: "http://localhost:9090/ToBuyList_war_exploded/filterLists?criterion=" + criterion + "&idUser=" + idUser,
+        url: "http://localhost:9090/ToBuyList_war_exploded/filterLists?criterion=" + criterion,
         type: 'get',
         cache: false,
         success: function (filteredLists) {

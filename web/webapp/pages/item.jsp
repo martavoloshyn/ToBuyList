@@ -35,15 +35,15 @@
             <div class="filter filter-basic">
                 <div class="filter-nav">
                     <button class="btn btn-primary active" id="all"
-                            onclick="setActive(id,'true','false');sendRequest(id,${items[0].idList});">
+                            onclick="setActive(id,'true','false');sendRequest(id,${idList});">
                         All
                     </button>
                     <button class="btn btn-primary" id="true"
-                            onclick="setActive(id, 'all', 'false');sendRequest(id,${items[0].idList});">
+                            onclick="setActive(id, 'all', 'false');sendRequest(id,${idList});">
                         Done
                     </button>
                     <button class="btn btn-primary" id="false"
-                            onclick="setActive(id, 'all','true');sendRequest(id,${items[0].idList});">
+                            onclick="setActive(id, 'all','true');sendRequest(id,${idList});">
                         Undone
                     </button>
                     <a href="http://localhost:9090/ToBuyList_war_exploded/logout">
@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <form action="addItem?idList=${items[0].idList}" method="post" style="margin-top:10px;">
+            <form action="addItem?idList=${idList}" method="post" style="margin-top:10px;">
                 <div class="add-items d-flex"><input type="text" name="itemText" class="form-control todo-list-input"
                                                      placeholder="What do you need to buy?">
                     <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn"

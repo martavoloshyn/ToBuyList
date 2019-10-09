@@ -33,13 +33,13 @@
             <div class="filter filter-basic">
                 <div class="filter-nav">
                     <button class="btn btn-primary active" id="all"
-                            onclick="setActive(id,'true','false');sendRequest(id,${listsByUser[0].idUser})">All
+                            onclick="setActive(id,'true','false');sendRequest(id)">All
                     </button>
                     <button class="btn btn-primary" id="true"
-                            onclick="setActive(id, 'all', 'false');sendRequest(id,${listsByUser[0].idUser});">Done
+                            onclick="setActive(id, 'all', 'false');sendRequest(id);">Done
                     </button>
                     <button class="btn btn-primary" id="false"
-                            onclick="setActive(id, 'all','true');sendRequest(id,${listsByUser[0].idUser});">Undone
+                            onclick="setActive(id, 'all','true');sendRequest(id);">Undone
                     </button>
                     <a href="http://localhost:9090/ToBuyList_war_exploded/logout">
                         <button class="btn btn-btn-dark"><i class="fas fa-door-open"></i></button>
