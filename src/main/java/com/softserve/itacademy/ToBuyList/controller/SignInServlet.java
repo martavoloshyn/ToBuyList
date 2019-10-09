@@ -1,5 +1,6 @@
 package com.softserve.itacademy.ToBuyList.controller;
 
+import com.softserve.itacademy.ToBuyList.entity.User;
 import com.softserve.itacademy.ToBuyList.service.implementations.UserServiceImpl;
 
 import javax.servlet.ServletException;
@@ -15,17 +16,21 @@ public class SignInServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserServiceImpl userService = new UserServiceImpl();
+
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
-        if(userService.isValid(email,password)){
+        if (userService.isValidAccount(email, password)) {
             HttpSession httpSession = req.getSession();
-            httpSession.setAttribute("id",userService.getUserByEmail(email).getId());
-            resp.sendRedirect(req.getContextPath()+"/homePage");
+            User user = userService.getUserByEmail(email);
+            httpSession.setAttribute("id", user.getId());
+            httpSession.setAttribute("username", user.getUsername());
 
+            resp.sendRedirect(req.getContextPath() + "/homePage");
         } else {
-            req.setAttribute("error","Invalid email or password. Please try again.");
-            req.getRequestDispatcher("index.jsp").forward(req,resp);
+            req.setAttribute("error", "Invalid email or password. Please try again.");
+
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
         }
     }
 }

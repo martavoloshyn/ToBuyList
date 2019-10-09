@@ -3,6 +3,7 @@ package com.softserve.itacademy.ToBuyList.entity;
 import java.util.Objects;
 
 public class User {
+
     private Integer id;
     private String email;
     private String password;
@@ -11,7 +12,7 @@ public class User {
     public User() {
     }
 
-    public User(String email, String password,String username) {
+    public User(String email, String password, String username) {
         this.email = email;
         this.password = password;
         this.username = username;

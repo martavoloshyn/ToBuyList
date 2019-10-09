@@ -19,7 +19,14 @@ function signUp() {
     }
 }
 
-$(document).ready(function () {
-    Seesion.Abandon();
-    Response.Cookies.Clear();
-});
+function checkFieldsOnInput() {
+    var password = document.getElementById("exampleInputPassword2").value;
+    var email = document.getElementById("exampleInputEmail2").value;
+    var username = document.getElementById("exampleInputUsername").value;
+
+    if(password===""||email===""||username===""){
+        alert("Please, fill in all the fields");
+    } else {
+        signUp();
+    }
+}

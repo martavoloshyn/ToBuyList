@@ -1,13 +1,10 @@
 package com.softserve.itacademy.ToBuyList.service.implementations;
 
 import com.softserve.itacademy.ToBuyList.dao.implementations.UserDAOImpl;
-import com.softserve.itacademy.ToBuyList.dao.interfaces.UserDAO;
 import com.softserve.itacademy.ToBuyList.entity.User;
 import com.softserve.itacademy.ToBuyList.service.interfaces.UserService;
+import com.softserve.itacademy.ToBuyList.util.PasswordEncoder;
 
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -19,38 +16,20 @@ public class UserServiceImpl implements UserService {
         userDAO = new UserDAOImpl();
     }
 
-    public String encodePassword(String password) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] messageDigest = md.digest(password.getBytes());
-            BigInteger no = new BigInteger(1, messageDigest);
-            String hashtext = no.toString(16);
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
-            }
-            return hashtext;
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public boolean isValidEmail(String email) {
-        ArrayList<String> allEmails = getAllEmails();
-        return !allEmails.contains(email);
+        return !getAllEmails().contains(email);
     }
 
-    public boolean isValidUsername(String username){
-        ArrayList<String> allUsernames = getAllUsernames();
-        return !allUsernames.contains(username);
+    public boolean isValidUsername(String username) {
+        return !getAllUsernames().contains(username);
     }
 
-    public boolean isValid(String email, String password) {
+    public boolean isValidAccount(String email, String password) {
         User user = getUserByEmail(email);
-        if (user == null) {
-            return false;
-        } else {
-            return encodePassword(password).equals(user.getPassword());
+        if (user != null) {
+            return PasswordEncoder.encodePassword(password).equals(user.getPassword());
         }
+        return false;
     }
 
     @Override
@@ -84,9 +63,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void add(User object) {
+    public void add(User user) {
         try {
-            userDAO.add(object);
+            userDAO.add(user);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -94,16 +73,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User get(Integer id) {
-        return null;
+        return userDAO.get(id);
     }
 
     @Override
-    public void update(User object) {
-
+    public void update(User user) {
+        userDAO.update(user);
     }
 
     @Override
     public void delete(Integer id) {
-
+        userDAO.delete(id);
     }
 }

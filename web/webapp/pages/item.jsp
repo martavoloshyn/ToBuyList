@@ -20,7 +20,7 @@
     <script src="https://kit.fontawesome.com/b9192cac7d.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/webapp/js/item.js"></script>
-    <link href="${pageContext.request.contextPath}/webapp/css/item.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/webapp/css/item-home.css" rel="stylesheet">
 
 </head>
 <body>
@@ -49,21 +49,22 @@
                     <a href="http://localhost:9090/ToBuyList_war_exploded/logout">
                         <button class="btn btn-btn-dark"><i class="fas fa-door-open"></i></button>
                     </a>
+                    <span>${username}</span>
                 </div>
             </div>
 
-            <form action="addItem?idList=${idList}" method="post" style="margin-top:10px;">
+            <form class="inputForm" action="addItem?idList=${idList}" method="post">
                 <div class="add-items d-flex"><input type="text" name="itemText" class="form-control todo-list-input"
-                                                     placeholder="What do you need to buy?">
+                                                     placeholder="What do you need to buy?" required>
                     <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn"
                             style="margin-left:5px;">Add
                     </button>
                 </div>
             </form>
 
-            <form id="editItemForm" method="post" style="margin-top:10px;" hidden>
+            <form class="inputForm" id="editItemForm" method="post" hidden>
                 <div class="add-items d-flex"><input type="text" name="newItemText" class="form-control todo-list-input"
-                                                     placeholder="What is your edited item?">
+                                                     placeholder="What is your edited item?" required>
                     <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn"
                             style="margin-left:5px;">Edit
                     </button>

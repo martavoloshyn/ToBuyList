@@ -5,36 +5,29 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
+
+    private static final String DB_URL = "jdbc:mysql://localhost/ToBuyList?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "rota2000";
+
     private static Connection connection = null;
 
     public static Connection getConnection() {
-        if (connection == null)
+        if (connection == null) {
             return initConnection();
-        else
-            return connection;
-    }
-
-    private static Connection initConnection() {
-        String url = "jdbc:mysql://localhost/ToBuyList?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-        String username = "root";
-        String password = "rota2000";
-
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
         return connection;
     }
 
-    public static void closeConnection() {
+    private static Connection initConnection() {
+
         try {
-            connection.close();
-        } catch (SQLException e) {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+
+        return connection;
     }
 }

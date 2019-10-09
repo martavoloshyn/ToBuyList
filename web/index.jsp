@@ -90,7 +90,7 @@
                 <input type="text" name="username" class="form-control" id="exampleInputUsername"
                        placeholder="Enter username" required>
             </div>
-            <button type="button" class="btn btn-primary" onclick="signUp()">SIGN UP</button>
+            <button type="button" class="btn btn-primary" onclick="checkFieldsOnInput()">SIGN UP</button>
 
         </form>
     </div>
