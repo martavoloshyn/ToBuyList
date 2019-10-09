@@ -21,7 +21,7 @@ public class HomeFilter implements Filter {
 
         HttpSession httpSession = req.getSession(false);
 
-        if(httpSession==null){
+        if(httpSession==null||httpSession.getAttribute("id")==null){
             req.getServletContext().getRequestDispatcher("/index.jsp").forward(req,resp);
         }
 

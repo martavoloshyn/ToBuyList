@@ -18,3 +18,8 @@ function signUp() {
         document.getElementById("sign-up").submit();
     }
 }
+
+$(document).ready(function () {
+    Seesion.Abandon();
+    Response.Cookies.Clear();
+});
