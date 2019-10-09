@@ -21,8 +21,8 @@ public class SignInServlet extends HttpServlet {
         if(userService.isValid(email,password)){
             HttpSession httpSession = req.getSession();
             httpSession.setAttribute("id",userService.getUserByEmail(email).getId());
-            httpSession.setAttribute("email",email);
-            req.getRequestDispatcher("webapp/pages/home.jsp").forward(req,resp);
+            resp.sendRedirect(req.getContextPath()+"/homePage");
+
         } else {
             req.setAttribute("error","Invalid email or password. Please try again.");
             req.getRequestDispatcher("index.jsp").forward(req,resp);

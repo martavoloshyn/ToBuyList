@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
     <title>ToBuyList</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -17,41 +18,54 @@
             crossorigin="anonymous"></script>
     <link href="${pageContext.request.contextPath}/webapp/css/index.css" rel="stylesheet">
     <script src="${pageContext.request.contextPath}/webapp/js/index.js"></script>
+
 </head>
 <body>
+
 <jsp:include page="/webapp/components/header.jsp"/>
+
 <div class="container">
+
     <div class="row justify-content-center align-self-center">
         <button type="button" class="btn btn-dark" onclick="showSignInForm()">
             <div class="btn-text">SIGN IN</div>
         </button>
     </div>
+
     <div class="row justify-content-center align-self-center">
         <button type="button" class="btn btn-dark" onclick="showSignUpForm()">
             <div class="btn-text">SIGN UP</div>
         </button>
     </div>
+
     <div class="row justify-content-center align-self-center">
         <small class="form-text text-muted">${error} </small>
     </div>
+
     <div class="row justify-content-center align-self-center sign-in-form" id="sign-in-form" hidden>
-        <form method="post" action="http://localhost:9090/ToBuyList_war_exploded/signIn" id="sign-in">
+
+        <form method="post" action="signIn" id="sign-in">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1"
+                       aria-describedby="emailHelp"
                        placeholder="Enter email">
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.
                 </small>
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>
-                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1"
+                       placeholder="Password">
             </div>
             <button type="submit" class="btn btn-primary">SIGN IN</button>
         </form>
+
     </div>
+
     <div class="row justify-content-center align-self-center sign-up-form" id="sign-up-form" hidden>
-        <form method="post" action="http://localhost:9090/ToBuyList_war_exploded/signUp" id="sign-up">
+
+        <form method="post" action="signUp" id="sign-up">
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
                 <input type="email" name="email" class="form-control" id="exampleInputEmail2"
@@ -77,6 +91,7 @@
                        placeholder="Enter username" required>
             </div>
             <button type="button" class="btn btn-primary" onclick="signUp()">SIGN UP</button>
+
         </form>
     </div>
 </div>

@@ -19,7 +19,8 @@
             crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/b9192cac7d.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/webapp/js/home.js"></script>
+    <script src="${pageContext.request.contextPath}/webapp/js/item.js"></script>
+    <link href="${pageContext.request.contextPath}/webapp/css/item.css" rel="stylesheet">
 
 </head>
 <body>
@@ -27,19 +28,23 @@
 <jsp:include page="../components/header.jsp"/>
 
 <div class="container">
+
     <div class="row justify-content-center align-self-center">
         <div class="col-md-6">
 
             <div class="filter filter-basic">
                 <div class="filter-nav">
                     <button class="btn btn-primary active" id="all"
-                            onclick="setActive(id,'true','false');sendRequest(id,${listsByUser[0].idUser})">All
+                            onclick="setActive(id,'true','false');sendRequest(id,${items[0].idList});">
+                        All
                     </button>
                     <button class="btn btn-primary" id="true"
-                            onclick="setActive(id, 'all', 'false');sendRequest(id,${listsByUser[0].idUser});">Done
+                            onclick="setActive(id, 'all', 'false');sendRequest(id,${items[0].idList});">
+                        Done
                     </button>
                     <button class="btn btn-primary" id="false"
-                            onclick="setActive(id, 'all','true');sendRequest(id,${listsByUser[0].idUser});">Undone
+                            onclick="setActive(id, 'all','true');sendRequest(id,${items[0].idList});">
+                        Undone
                     </button>
                     <a href="http://localhost:9090/ToBuyList_war_exploded/logout">
                         <button class="btn btn-btn-dark"><i class="fas fa-door-open"></i></button>
@@ -47,17 +52,17 @@
                 </div>
             </div>
 
-            <form action="addList" method="post" style="margin-top:10px;">
-                <div class="add-items d-flex"><input type="text" name="listName" class="form-control todo-list-input"
-                                                     placeholder="What list do you need to create?">
+            <form action="addItem?idList=${items[0].idList}" method="post" style="margin-top:10px;">
+                <div class="add-items d-flex"><input type="text" name="itemText" class="form-control todo-list-input"
+                                                     placeholder="What do you need to buy?">
                     <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn"
                             style="margin-left:5px;">Add
                     </button>
                 </div>
             </form>
 
-            <form id="editListForm" method="post" style="margin-top:10px;" hidden>
-                <div class="add-items d-flex"><input type="text" name="newListName" class="form-control todo-list-input"
+            <form id="editItemForm" method="post" style="margin-top:10px;" hidden>
+                <div class="add-items d-flex"><input type="text" name="newItemText" class="form-control todo-list-input"
                                                      placeholder="What is your edited item?">
                     <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn"
                             style="margin-left:5px;">Edit
@@ -65,11 +70,11 @@
                 </div>
             </form>
 
-            <ul class="list-group" id="lists">
+            <ul class="list-group" id="items">
 
             </ul>
-
         </div>
+
     </div>
 </div>
 </body>
