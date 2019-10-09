@@ -14,12 +14,19 @@ function sendRequest(criterion, idList) {
             $.each(filteredItems, function (index, item) {
                 var $li = $("<li>", {class: "list-group-item"}).prependTo("#items");
                 var $div = $("<div>", {style: "text-align:right;"}).prependTo($li);
-                var $button = $("<button>", {
+                var $buttonDelete = $("<button>", {
                     type: "button",
                     class: "btn btn-primary",
                     onclick: "deleteItem(" + item.id.toString() + ")"
                 }).prependTo($div);
-                $("<i>", {class: "fas fa-trash-alt"}).prependTo($button);
+                var $buttonEdit = $("<button>", {
+                    type: "button",
+                    class: "btn btn-primary",
+                    onclick: "prepareEditForm(" + item.id + "," + item.idList + ")",
+                    style: "margin-right:5px;"
+                }).prependTo($div);
+                $("<i>", {class: "fas fa-trash-alt"}).prependTo($buttonDelete);
+                $("<i>", {class: "fas fa-pencil-alt"}).prependTo($buttonEdit);
                 var $input = $("<input>", {
                     type: "checkbox",
                     id: item.id.toString(),
@@ -34,6 +41,11 @@ function sendRequest(criterion, idList) {
             alert('error');
         }
     })
+}
+
+function prepareEditForm(idItem,idList) {
+    document.getElementById("editItemForm").hidden = false;
+    document.getElementById("editItemForm").action = "editItem?idItem=" + idItem + "&idList=" + idList;
 }
 
 function deleteItem(idItem) {

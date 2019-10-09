@@ -16,4 +16,6 @@ public interface ItemService extends Service<Item> {
     void changeDoneById (Integer idItem);
 
     void createItem (Integer idList, String newItemText);
+
+    void updateItem (Integer idItem, String newItemText);
 }

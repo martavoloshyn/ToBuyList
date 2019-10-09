@@ -76,6 +76,14 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
+    public void updateItem(Integer idItem, String newItemText) {
+        Item updatedItem = get(idItem);
+        updatedItem.setText(newItemText);
+        updatedItem.setUpdateDate(LocalDate.now());
+        update(updatedItem);
+    }
+
+    @Override
     public void add(Item object) {
         try {
             itemDAO.add(object);
