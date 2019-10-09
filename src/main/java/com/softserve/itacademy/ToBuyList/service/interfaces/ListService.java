@@ -17,4 +17,6 @@ public interface ListService extends Service<List> {
     void changeDoneById (Integer idList);
 
     void createList(Integer idUser,String newListName);
+
+    void updateList(Integer idList,String newListName);
 }

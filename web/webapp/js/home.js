@@ -14,12 +14,19 @@ function sendRequest(criterion, idUser) {
             $.each(filteredLists, function (index, list) {
                 var $li = $("<li>", {class: "list-group-item"}).prependTo("#lists");
                 var $div = $("<div>", {style: "text-align:right;"}).prependTo($li);
-                var $button = $("<button>", {
+                var $buttonDelete = $("<button>", {
                     type: "button",
                     class: "btn btn-primary",
                     onclick: "deleteList(" + list.id.toString() + ")"
                 }).prependTo($div);
-                $("<i>", {class: "fas fa-trash-alt"}).prependTo($button);
+                var $buttonEdit = $("<button>", {
+                    type: "button",
+                    class: "btn btn-primary",
+                    onclick: "prepareEditForm(" + list.id + ")",
+                    style: "margin-right:5px;"
+                }).prependTo($div);
+                $("<i>", {class: "fas fa-pencil-alt"}).prependTo($buttonEdit);
+                $("<i>", {class: "fas fa-trash-alt"}).prependTo($buttonDelete);
                 var $a = $("<a>", {
                     href: "http://localhost:9090/ToBuyList_war_exploded/itemPage?idList=" + list.id.toString(),
                     style: "text-decoration:none;color:black"
@@ -37,6 +44,11 @@ function sendRequest(criterion, idUser) {
             alert('error');
         }
     })
+}
+
+function prepareEditForm(idList) {
+    document.getElementById("editListForm").hidden = false;
+    document.getElementById("editListForm").action = "editList?idList=" + idList;
 }
 
 function deleteList(idList) {

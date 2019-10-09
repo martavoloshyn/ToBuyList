@@ -55,6 +55,14 @@ public class ListServiceImpl implements ListService {
     }
 
     @Override
+    public void updateList(Integer idList, String newListName) {
+        List updatedList = get(idList);
+        updatedList.setName(newListName);
+        updatedList.setUpdateDate(LocalDate.now());
+        update(updatedList);
+    }
+
+    @Override
     public ArrayList<List> getDoneListsByUser(Integer idUser) {
         try {
             return listDAO.getDoneListsByUser(idUser);

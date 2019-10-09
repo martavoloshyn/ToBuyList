@@ -56,6 +56,15 @@
                 </div>
             </form>
 
+            <form id="editListForm" method="post" style="margin-top:10px;" hidden>
+                <div class="add-items d-flex"><input type="text" name="newListName" class="form-control todo-list-input"
+                                                     placeholder="What is your edited item?">
+                    <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn"
+                            style="margin-left:5px;">Edit
+                    </button>
+                </div>
+            </form>
+
             <ul class="list-group" id="lists">
 
             </ul>
