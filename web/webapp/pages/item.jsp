@@ -49,6 +49,7 @@
                     <a href="http://localhost:9090/ToBuyList_war_exploded/logout">
                         <button class="btn btn-btn-dark"><i class="fas fa-door-open"></i></button>
                     </a>
+                    <span>${username}</span>
                 </div>
             </div>
 

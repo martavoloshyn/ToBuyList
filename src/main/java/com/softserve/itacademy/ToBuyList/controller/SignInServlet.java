@@ -1,5 +1,6 @@
 package com.softserve.itacademy.ToBuyList.controller;
 
+import com.softserve.itacademy.ToBuyList.entity.User;
 import com.softserve.itacademy.ToBuyList.service.implementations.UserServiceImpl;
 
 import javax.servlet.ServletException;
@@ -21,7 +22,9 @@ public class SignInServlet extends HttpServlet {
 
         if (userService.isValidAccount(email, password)) {
             HttpSession httpSession = req.getSession();
-            httpSession.setAttribute("id", userService.getUserByEmail(email).getId());
+            User user = userService.getUserByEmail(email);
+            httpSession.setAttribute("id", user.getId());
+            httpSession.setAttribute("username", user.getUsername());
 
             resp.sendRedirect(req.getContextPath() + "/homePage");
         } else {

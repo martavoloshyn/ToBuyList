@@ -23,7 +23,10 @@ public class HomePageServlet extends HttpServlet {
 
         ArrayList<List> listsByUser = listService
                 .getListsByUser((Integer) httpSession.getAttribute("id"));
+        String username = (String) httpSession.getAttribute("username");
+
         req.setAttribute("listsByUser", listsByUser);
+        req.setAttribute("username",username);
 
         req.getRequestDispatcher("webapp/pages/home.jsp").forward(req, resp);
     }
