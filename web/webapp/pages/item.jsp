@@ -18,7 +18,7 @@
             crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/b9192cac7d.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/webapp/js/item2.js"></script>
+    <script src="${pageContext.request.contextPath}/webapp/js/item.js"></script>
     <link href="${pageContext.request.contextPath}/webapp/css/item.css" rel="stylesheet">
 </head>
 <body>
