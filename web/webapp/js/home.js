@@ -3,59 +3,64 @@ function setActive(id, id1, id2) {
     document.getElementById(id1).className = "btn btn-primary";
     document.getElementById(id2).className = "btn btn-primary";
 }
-function sendRequest(link) {
+
+function sendRequest(criterion, idUser) {
     $.ajax({
-            url: link,
-            type: 'get',
-            cache: false,
-            success: function (filteredLists) {
-                document.getElementById("lists").innerHTML = "";
-                $.each(filteredLists, function (index, list) {
-                    var $li = $("<li>",{class:"list-group-item"}).prependTo("#lists");
-                    var $div = $("<div>",{style:"text-align:right;"}).prependTo($li);
-                    var $button = $("<button>", {type:"button", class:"btn btn-primary", onclick:"deleteList("+list.id.toString()+")"}).prependTo($div);
-                    $("<i>", {class:"fas fa-trash-alt"}).prependTo($button);
-                    var $a = $("<a>",{href: "http://localhost:9090/ToBuyList_war_exploded/itemPage?idList="+list.id.toString(), style: "text-decoration:none;color:black"}).text(list.name).prependTo($li);
-                    var $input = $("<input>", {
-                        type: "checkbox",
-                        id: list.id.toString(),
-                        onchange: "changeDone('http://localhost:9090/ToBuyList_war_exploded/changeListDone?idList="+list.id.toString()+"')",
-                        checked: list.isDone,
-                        style:"margin-right: 5px;"
-                    }).prependTo($div);
-                });
-            },
-            error: function () {
-                alert('error');
-            }
+        url: "http://localhost:9090/ToBuyList_war_exploded/filterLists?criterion=" + criterion + "&idUser=" + idUser,
+        type: 'get',
+        cache: false,
+        success: function (filteredLists) {
+            document.getElementById("lists").innerHTML = "";
+            $.each(filteredLists, function (index, list) {
+                var $li = $("<li>", {class: "list-group-item"}).prependTo("#lists");
+                var $div = $("<div>", {style: "text-align:right;"}).prependTo($li);
+                var $button = $("<button>", {
+                    type: "button",
+                    class: "btn btn-primary",
+                    onclick: "deleteList(" + list.id.toString() + ")"
+                }).prependTo($div);
+                $("<i>", {class: "fas fa-trash-alt"}).prependTo($button);
+                var $a = $("<a>", {
+                    href: "http://localhost:9090/ToBuyList_war_exploded/itemPage?idList=" + list.id.toString(),
+                    style: "text-decoration:none;color:black"
+                }).text(list.name).prependTo($li);
+                var $input = $("<input>", {
+                    type: "checkbox",
+                    id: list.id.toString(),
+                    onchange: "changeDone(" + list.id.toString() + ")",
+                    checked: list.isDone,
+                    style: "margin-right: 5px;"
+                }).prependTo($div);
+            });
+        },
+        error: function () {
+            alert('error');
         }
-    )
+    })
 }
 
 function deleteList(idList) {
     $.ajax({
-            url: 'http://localhost:9090/ToBuyList_war_exploded/deleteList?idList='+idList,
-            type: 'delete',
-            cache: false,
-            success: function () {
-                document.getElementById("all").click();
-            },
-            error: function () {
-                alert('error');
-            }
+        url: 'http://localhost:9090/ToBuyList_war_exploded/deleteList?idList=' + idList,
+        type: 'delete',
+        cache: false,
+        success: function () {
+            document.getElementById("all").click();
+        },
+        error: function () {
+            alert('error');
         }
-    )
+    })
 }
 
-function changeDone(link){
+function changeDone(idList) {
     $.ajax({
-            url: link,
-            type: 'post',
-            error: function () {
-                alert('error');
-            }
+        url: "http://localhost:9090/ToBuyList_war_exploded/changeListDone?idList=" + idList,
+        type: 'post',
+        error: function () {
+            alert('error');
         }
-    )
+    })
 }
 
 $(document).ready(function () {

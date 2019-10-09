@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+
     <title>ToBuyList</title>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -20,40 +21,52 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/webapp/js/item.js"></script>
     <link href="${pageContext.request.contextPath}/webapp/css/item.css" rel="stylesheet">
+
 </head>
 <body>
+
 <jsp:include page="../components/header.jsp"/>
+
 <div class="container">
+
     <div class="row justify-content-center align-self-center">
         <div class="col-md-6">
+
             <div class="filter filter-basic">
                 <div class="filter-nav">
                     <button class="btn btn-primary active" id="all"
-                            onclick="setActive(id,'true','false');sendRequest('http://localhost:9090/ToBuyList_war_exploded/filterItems?criterion='+id+'&idList='+${items[0].idList});">
+                            onclick="setActive(id,'true','false');sendRequest(id,${items[0].idList});">
                         All
                     </button>
                     <button class="btn btn-primary" id="true"
-                            onclick="setActive(id, 'all', 'false');sendRequest('http://localhost:9090/ToBuyList_war_exploded/filterItems?criterion='+id+'&idList='+${items[0].idList});">
+                            onclick="setActive(id, 'all', 'false');sendRequest(id,${items[0].idList});">
                         Done
                     </button>
                     <button class="btn btn-primary" id="false"
-                            onclick="setActive(id, 'all','true');sendRequest('http://localhost:9090/ToBuyList_war_exploded/filterItems?criterion='+id+'&idList='+${items[0].idList});">
+                            onclick="setActive(id, 'all','true');sendRequest(id,${items[0].idList});">
                         Undone
                     </button>
-                    <a href="http://localhost:9090/ToBuyList_war_exploded/logout"><button class="btn btn-btn-dark"><i class="fas fa-door-open"></i></button></a>
+                    <a href="http://localhost:9090/ToBuyList_war_exploded/logout">
+                        <button class="btn btn-btn-dark"><i class="fas fa-door-open"></i></button>
+                    </a>
                 </div>
             </div>
+
             <form action="addItem?idList=${items[0].idList}" method="post" style="margin-top:10px;">
                 <div class="add-items d-flex"><input type="text" name="itemText" class="form-control todo-list-input"
                                                      placeholder="What do you need to buy?">
-                    <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn" style="margin-left:5px;">Add</button>
+                    <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn"
+                            style="margin-left:5px;">Add
+                    </button>
                 </div>
             </form>
+
             <ul class="list-group" id="items">
 
             </ul>
 
         </div>
+
     </div>
 </div>
 </body>
