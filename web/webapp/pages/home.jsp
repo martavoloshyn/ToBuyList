@@ -50,7 +50,7 @@
 
             <form class="inputForm" action="addList" method="post">
                 <div class="add-items d-flex"><input type="text" name="listName" class="form-control todo-list-input"
-                                                     placeholder="What list do you need to create?">
+                                                     placeholder="What list do you need to create?" required>
                     <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn"
                             style="margin-left:5px;">Add
                     </button>
@@ -59,7 +59,7 @@
 
             <form class="inputForm" id="editListForm" method="post" hidden>
                 <div class="add-items d-flex"><input type="text" name="newListName" class="form-control todo-list-input"
-                                                     placeholder="What is your edited item?">
+                                                     placeholder="What is your edited item?" required>
                     <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn"
                             style="margin-left:5px;">Edit
                     </button>

@@ -54,7 +54,7 @@
 
             <form class="inputForm" action="addItem?idList=${idList}" method="post">
                 <div class="add-items d-flex"><input type="text" name="itemText" class="form-control todo-list-input"
-                                                     placeholder="What do you need to buy?">
+                                                     placeholder="What do you need to buy?" required>
                     <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn"
                             style="margin-left:5px;">Add
                     </button>
@@ -63,7 +63,7 @@
 
             <form class="inputForm" id="editItemForm" method="post" hidden>
                 <div class="add-items d-flex"><input type="text" name="newItemText" class="form-control todo-list-input"
-                                                     placeholder="What is your edited item?">
+                                                     placeholder="What is your edited item?" required>
                     <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn"
                             style="margin-left:5px;">Edit
                     </button>

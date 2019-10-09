@@ -18,3 +18,15 @@ function signUp() {
         document.getElementById("sign-up").submit();
     }
 }
+
+function checkFieldsOnInput() {
+    var password = document.getElementById("exampleInputPassword2").value;
+    var email = document.getElementById("exampleInputEmail2").value;
+    var username = document.getElementById("exampleInputUsername").value;
+
+    if(password===""||email===""||username===""){
+        alert("Please, fill in all the fields");
+    } else {
+        signUp();
+    }
+}

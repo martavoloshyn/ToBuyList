@@ -27,12 +27,12 @@ function generateList(list) {
 
     var $span1 = $("<span>", {
         class: "form-text text-muted",
-        text: "created: " + parseDate(list.createDate),
+        text: "created: " + parseDate(list.createDate)
     }).prependTo($li);
 
     var $span2 = $("<span>", {
         class: "form-text text-muted",
-        text: "updated: " + parseDate(list.updateDate),
+        text: "updated: " + parseDate(list.updateDate)
     }).prependTo($li);
 
     var $div = $("<div>", {style: "text-align:right;"}).prependTo($li);
@@ -55,6 +55,7 @@ function generateList(list) {
 
     var $input = $("<input>", {
         type: "checkbox",
+        class: "checkbox-item",
         id: list.id.toString(),
         onchange: "changeDone(" + list.id.toString() + ")",
         checked: list.isDone
