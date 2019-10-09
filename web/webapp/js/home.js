@@ -13,6 +13,16 @@ function sendRequest(criterion, idUser) {
             document.getElementById("lists").innerHTML = "";
             $.each(filteredLists, function (index, list) {
                 var $li = $("<li>", {class: "list-group-item"}).prependTo("#lists");
+                var $span1 = $("<span>", {
+                    class: "form-text text-muted",
+                    text: "created: " + parseDate(list.createDate),
+                    style: "font-size: 10px;"
+                }).prependTo($li);
+                var $span2 = $("<span>", {
+                    class: "form-text text-muted",
+                    text: "updated: " + parseDate(list.updateDate),
+                    style: "font-size: 10px;"
+                }).prependTo($li);
                 var $div = $("<div>", {style: "text-align:right;"}).prependTo($li);
                 var $buttonDelete = $("<button>", {
                     type: "button",
@@ -44,6 +54,10 @@ function sendRequest(criterion, idUser) {
             alert('error');
         }
     })
+}
+
+function parseDate(jsonDate) {
+    return jsonDate.day + "." + jsonDate.month + "." +jsonDate.year;
 }
 
 function prepareEditForm(idList) {
