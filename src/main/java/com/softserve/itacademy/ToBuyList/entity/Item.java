@@ -1,10 +1,10 @@
 package com.softserve.itacademy.ToBuyList.entity;
 
-import javax.swing.text.StyledEditorKit;
 import java.time.LocalDate;
 import java.util.Objects;
 
 public class Item {
+
     private Integer id;
     private Integer idList;
     private String text;

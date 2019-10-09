@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class List {
+
     private Integer id;
     private Integer idUser;
     private String name;
