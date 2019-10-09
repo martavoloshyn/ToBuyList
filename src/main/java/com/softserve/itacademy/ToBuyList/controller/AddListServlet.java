@@ -1,6 +1,5 @@
 package com.softserve.itacademy.ToBuyList.controller;
 
-import com.softserve.itacademy.ToBuyList.service.implementations.ItemServiceImpl;
 import com.softserve.itacademy.ToBuyList.service.implementations.ListServiceImpl;
 
 import javax.servlet.ServletException;
@@ -17,9 +16,12 @@ public class AddListServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ListServiceImpl listService = new ListServiceImpl();
         HttpSession httpSession = req.getSession(false);
+
         Integer idUser = (Integer) httpSession.getAttribute("id");
         String newListName = req.getParameter("listName");
-        listService.createList(idUser,newListName);
-        resp.sendRedirect(req.getContextPath()+"/homePage");
+
+        listService.createList(idUser, newListName);
+
+        resp.sendRedirect(req.getContextPath() + "/homePage");
     }
 }

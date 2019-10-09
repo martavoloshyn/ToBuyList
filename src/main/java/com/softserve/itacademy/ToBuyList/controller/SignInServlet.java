@@ -15,17 +15,19 @@ public class SignInServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UserServiceImpl userService = new UserServiceImpl();
+
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
-        if(userService.isValid(email,password)){
+        if (userService.isValid(email, password)) {
             HttpSession httpSession = req.getSession();
-            httpSession.setAttribute("id",userService.getUserByEmail(email).getId());
-            resp.sendRedirect(req.getContextPath()+"/homePage");
+            httpSession.setAttribute("id", userService.getUserByEmail(email).getId());
 
+            resp.sendRedirect(req.getContextPath() + "/homePage");
         } else {
-            req.setAttribute("error","Invalid email or password. Please try again.");
-            req.getRequestDispatcher("index.jsp").forward(req,resp);
+            req.setAttribute("error", "Invalid email or password. Please try again.");
+
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
         }
     }
 }

@@ -14,7 +14,9 @@ public class DeleteListServlet extends HttpServlet {
     @Override
     protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ListServiceImpl listService = new ListServiceImpl();
+
         Integer idList = Integer.parseInt(req.getParameter("idList"));
+
         listService.delete(idList);
     }
 }

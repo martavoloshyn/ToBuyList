@@ -20,9 +20,12 @@ public class HomePageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ListService listService = new ListServiceImpl();
         HttpSession httpSession = req.getSession(false);
+
         Integer idUser = (Integer) httpSession.getAttribute("id");
+
         ArrayList<List> listsByUser = listService.getListsByUser(idUser);
         req.setAttribute("listsByUser", listsByUser);
+
         req.getRequestDispatcher("webapp/pages/home.jsp").forward(req, resp);
     }
 }

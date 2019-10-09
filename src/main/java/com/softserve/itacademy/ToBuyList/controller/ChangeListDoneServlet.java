@@ -14,7 +14,9 @@ public class ChangeListDoneServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ListServiceImpl listService = new ListServiceImpl();
+
         Integer idList = Integer.parseInt(req.getParameter("idList"));
+
         listService.changeDoneById(idList);
     }
 }

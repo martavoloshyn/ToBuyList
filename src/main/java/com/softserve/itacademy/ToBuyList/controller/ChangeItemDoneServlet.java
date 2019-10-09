@@ -14,7 +14,9 @@ public class ChangeItemDoneServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ItemServiceImpl itemService = new ItemServiceImpl();
+
         Integer idItem = Integer.parseInt(req.getParameter("idItem"));
+
         itemService.changeDoneById(idItem);
     }
 }

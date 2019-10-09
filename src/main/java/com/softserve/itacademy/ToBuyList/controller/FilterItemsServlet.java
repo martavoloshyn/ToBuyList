@@ -1,7 +1,6 @@
 package com.softserve.itacademy.ToBuyList.controller;
 
 import com.google.gson.Gson;
-//import com.alibaba.fastjson.JSON;
 import com.softserve.itacademy.ToBuyList.entity.Item;
 import com.softserve.itacademy.ToBuyList.service.implementations.ItemServiceImpl;
 
@@ -18,10 +17,11 @@ public class FilterItemsServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ItemServiceImpl itemService = new ItemServiceImpl();
+
         Integer idList = Integer.parseInt(req.getParameter("idList"));
         String criterion = req.getParameter("criterion");
-        ArrayList<Item> requestedItems = itemService.filter(criterion,idList);
 
+        ArrayList<Item> requestedItems = itemService.filter(criterion, idList);
         String json = new Gson().toJson(requestedItems);
 
         resp.setContentType("application/json");
