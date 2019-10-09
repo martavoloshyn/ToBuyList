@@ -13,12 +13,12 @@ function sendRequest(criterion, idList) {
             document.getElementById("items").innerHTML = "";
             $.each(filteredItems, function (index, item) {
                 var $li = $("<li>", {class: "list-group-item"}).prependTo("#items");
-                var $p1 = $("<span>", {
+                var $span1 = $("<span>", {
                     class: "form-text text-muted",
                     text: "created: " + parseDate(item.createDate),
                     style: "font-size: 10px;"
                 }).prependTo($li);
-                var $p2 = $("<span>", {
+                var $span2 = $("<span>", {
                     class: "form-text text-muted",
                     text: "updated: " + parseDate(item.updateDate),
                     style: "font-size: 10px;"
