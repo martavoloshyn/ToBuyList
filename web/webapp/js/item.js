@@ -13,6 +13,16 @@ function sendRequest(criterion, idList) {
             document.getElementById("items").innerHTML = "";
             $.each(filteredItems, function (index, item) {
                 var $li = $("<li>", {class: "list-group-item"}).prependTo("#items");
+                var $p1 = $("<span>", {
+                    class: "form-text text-muted",
+                    text: "created: " + parseDate(item.createDate),
+                    style: "font-size: 10px;"
+                }).prependTo($li);
+                var $p2 = $("<span>", {
+                    class: "form-text text-muted",
+                    text: "updated: " + parseDate(item.updateDate),
+                    style: "font-size: 10px;"
+                }).prependTo($li);
                 var $div = $("<div>", {style: "text-align:right;"}).prependTo($li);
                 var $buttonDelete = $("<button>", {
                     type: "button",
@@ -43,7 +53,11 @@ function sendRequest(criterion, idList) {
     })
 }
 
-function prepareEditForm(idItem,idList) {
+function parseDate(jsonDate) {
+    return jsonDate.day + "." + jsonDate.month + "." +jsonDate.year;
+}
+
+function prepareEditForm(idItem, idList) {
     document.getElementById("editItemForm").hidden = false;
     document.getElementById("editItemForm").action = "editItem?idItem=" + idItem + "&idList=" + idList;
 }
