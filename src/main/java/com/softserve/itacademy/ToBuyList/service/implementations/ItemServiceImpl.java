@@ -52,12 +52,14 @@ public class ItemServiceImpl implements ItemService {
             return getItemsByList(idList);
         }
         boolean isDone = Boolean.parseBoolean(criterion);
+
         ArrayList<Item> filteredItems = new ArrayList<>();
         if (isDone) {
             filteredItems = getDoneItemsByList(idList);
         } else {
             filteredItems = getUndoneItemsByList(idList);
         }
+
         return filteredItems;
     }
 
@@ -70,8 +72,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void createItem(Integer idList, String newItemText) {
-        Item newItem = new Item(idList,newItemText, LocalDate.now(),LocalDate.now(),false);
-        System.out.println(newItem);
+        Item newItem = new Item(idList, newItemText, LocalDate.now(), LocalDate.now(), false);
         add(newItem);
     }
 

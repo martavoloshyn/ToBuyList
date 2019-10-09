@@ -1,9 +1,9 @@
 package com.softserve.itacademy.ToBuyList.service.implementations;
 
 import com.softserve.itacademy.ToBuyList.dao.implementations.UserDAOImpl;
-import com.softserve.itacademy.ToBuyList.dao.interfaces.UserDAO;
 import com.softserve.itacademy.ToBuyList.entity.User;
 import com.softserve.itacademy.ToBuyList.service.interfaces.UserService;
+import com.softserve.itacademy.ToBuyList.util.PasswordEncoder;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -19,37 +19,24 @@ public class UserServiceImpl implements UserService {
         userDAO = new UserDAOImpl();
     }
 
-    public String encodePassword(String password) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] messageDigest = md.digest(password.getBytes());
-            BigInteger no = new BigInteger(1, messageDigest);
-            String hashtext = no.toString(16);
-            while (hashtext.length() < 32) {
-                hashtext = "0" + hashtext;
-            }
-            return hashtext;
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public boolean isValidEmail(String email) {
         ArrayList<String> allEmails = getAllEmails();
         return !allEmails.contains(email);
     }
 
-    public boolean isValidUsername(String username){
+    public boolean isValidUsername(String username) {
         ArrayList<String> allUsernames = getAllUsernames();
         return !allUsernames.contains(username);
     }
 
     public boolean isValid(String email, String password) {
+        PasswordEncoder passwordEncoder = new PasswordEncoder();
+
         User user = getUserByEmail(email);
         if (user == null) {
             return false;
         } else {
-            return encodePassword(password).equals(user.getPassword());
+            return passwordEncoder.encodePassword(password).equals(user.getPassword());
         }
     }
 

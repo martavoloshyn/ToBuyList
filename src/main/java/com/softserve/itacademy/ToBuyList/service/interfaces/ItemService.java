@@ -11,11 +11,11 @@ public interface ItemService extends Service<Item> {
 
     ArrayList<Item> getUndoneItemsByList(Integer idList);
 
-    ArrayList<Item> filter(String criterion,Integer idList);
+    ArrayList<Item> filter(String criterion, Integer idList);
 
-    void changeDoneById (Integer idItem);
+    void changeDoneById(Integer idItem);
 
-    void createItem (Integer idList, String newItemText);
+    void createItem(Integer idList, String newItemText);
 
-    void updateItem (Integer idItem, String newItemText);
+    void updateItem(Integer idItem, String newItemText);
 }

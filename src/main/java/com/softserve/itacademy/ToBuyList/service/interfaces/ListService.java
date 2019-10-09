@@ -2,7 +2,6 @@ package com.softserve.itacademy.ToBuyList.service.interfaces;
 
 import com.softserve.itacademy.ToBuyList.entity.List;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface ListService extends Service<List> {
@@ -14,9 +13,9 @@ public interface ListService extends Service<List> {
 
     public ArrayList<List> filter(String criterion, Integer idUser);
 
-    void changeDoneById (Integer idList);
+    void changeDoneById(Integer idList);
 
-    void createList(Integer idUser,String newListName);
+    void createList(Integer idUser, String newListName);
 
-    void updateList(Integer idList,String newListName);
+    void updateList(Integer idList, String newListName);
 }

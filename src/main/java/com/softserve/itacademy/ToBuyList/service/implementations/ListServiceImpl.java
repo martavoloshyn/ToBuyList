@@ -1,7 +1,6 @@
 package com.softserve.itacademy.ToBuyList.service.implementations;
 
 import com.softserve.itacademy.ToBuyList.dao.implementations.ListDAOImpl;
-import com.softserve.itacademy.ToBuyList.dao.interfaces.ListDAO;
 import com.softserve.itacademy.ToBuyList.entity.List;
 import com.softserve.itacademy.ToBuyList.service.interfaces.ListService;
 
@@ -10,14 +9,15 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class ListServiceImpl implements ListService {
+
     private ListDAOImpl listDAO;
 
-    public ListServiceImpl(){
+    public ListServiceImpl() {
         listDAO = new ListDAOImpl();
     }
+
     @Override
     public ArrayList<List> getListsByUser(Integer idUser) {
-        System.out.println(idUser);
         try {
             return listDAO.getListsByUser(idUser);
         } catch (SQLException e) {
@@ -28,16 +28,19 @@ public class ListServiceImpl implements ListService {
 
     @Override
     public ArrayList<List> filter(String criterion, Integer idUser) {
+
         if (criterion.equals("all")) {
             return getListsByUser(idUser);
         }
         boolean isDone = Boolean.parseBoolean(criterion);
+
         ArrayList<List> filteredLists = new ArrayList<>();
         if (isDone) {
             filteredLists = getDoneListsByUser(idUser);
         } else {
             filteredLists = getUndoneListsByUser(idUser);
         }
+
         return filteredLists;
     }
 
@@ -50,7 +53,7 @@ public class ListServiceImpl implements ListService {
 
     @Override
     public void createList(Integer idUser, String newListName) {
-        List newList = new List(idUser,newListName, LocalDate.now(),LocalDate.now(),false);
+        List newList = new List(idUser, newListName, LocalDate.now(), LocalDate.now(), false);
         add(newList);
     }
 

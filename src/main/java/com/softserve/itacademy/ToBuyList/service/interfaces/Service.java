@@ -1,7 +1,5 @@
 package com.softserve.itacademy.ToBuyList.service.interfaces;
 
-import java.sql.SQLException;
-
 public interface Service<T> {
     void add(T object);
 
