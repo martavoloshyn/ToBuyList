@@ -5,13 +5,15 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnection {
+
     private static Connection connection = null;
 
     public static Connection getConnection() {
-        if (connection == null)
+        if (connection == null) {
             return initConnection();
-        else
+        } else {
             return connection;
+        }
     }
 
     private static Connection initConnection() {
@@ -22,11 +24,10 @@ public class DBConnection {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
+
         return connection;
     }
 
