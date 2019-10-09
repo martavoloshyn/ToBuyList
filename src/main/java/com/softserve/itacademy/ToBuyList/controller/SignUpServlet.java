@@ -2,6 +2,7 @@ package com.softserve.itacademy.ToBuyList.controller;
 
 import com.softserve.itacademy.ToBuyList.entity.User;
 import com.softserve.itacademy.ToBuyList.service.implementations.UserServiceImpl;
+import com.softserve.itacademy.ToBuyList.util.PasswordEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +22,7 @@ public class SignUpServlet extends HttpServlet {
         String username = req.getParameter("username");
 
         if (userService.isValidEmail(email) && userService.isValidUsername(username)) {
-            User user = new User(email, userService.encodePassword(password), username);
+            User user = new User(email, PasswordEncoder.encodePassword(password), username);
             userService.add(user);
 
             req.setAttribute("email", email);

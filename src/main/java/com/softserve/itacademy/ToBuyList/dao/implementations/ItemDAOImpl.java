@@ -32,23 +32,22 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     private ArrayList<Item> getItems(PreparedStatement statement) throws SQLException {
-        ArrayList<Item> items = new ArrayList<Item>();
+        ArrayList<Item> items = new ArrayList<>();
 
         ResultSet set = statement.executeQuery();
         while (set.next()) {
-            Item item = new Item();
-            item.setId(set.getInt("iditem"));
-            item.setIdList(set.getInt("idlist"));
-            item.setText(set.getString("text"));
-            item.setCreateDate(set.getDate("createdate").toLocalDate());
-            item.setUpdateDate(set.getDate("updatedate").toLocalDate());
-            item.setDone(set.getBoolean(("isdone")));
-            items.add(item);
+            items.add(getNextItem(set));
         }
 
         set.close();
         statement.close();
         return items;
+    }
+
+    private Item getNextItem(ResultSet set) throws SQLException {
+        Item item = new Item();
+        setItem(item, set);
+        return item;
     }
 
     @Override
@@ -60,17 +59,21 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     @Override
-    public void add(Item object) throws SQLException {
-        String query = "INSERT INTO item (idlist, text, createdate,updatedate, isdone ) VALUES (?,?,?,?,?)";
+    public void add(Item item) throws SQLException {
+        String query = "INSERT INTO item (idlist, text, createdate,updatedate, isdone) VALUES (?,?,?,?,?)";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, object.getIdList());
-        statement.setString(2, object.getText());
-        statement.setDate(3, Date.valueOf(object.getCreateDate()));
-        statement.setDate(4, Date.valueOf(object.getUpdateDate()));
-        statement.setBoolean(5, object.getDone());
+        prepareStatement(item, statement);
         statement.execute();
 
         statement.close();
+    }
+
+    private void prepareStatement(Item item, PreparedStatement statement) throws SQLException {
+        statement.setInt(1, item.getIdList());
+        statement.setString(2, item.getText());
+        statement.setDate(3, Date.valueOf(item.getCreateDate()));
+        statement.setDate(4, Date.valueOf(item.getUpdateDate()));
+        statement.setBoolean(5, item.getDone());
     }
 
     @Override
@@ -82,12 +85,7 @@ public class ItemDAOImpl implements ItemDAO {
 
         ResultSet set = statement.executeQuery();
         if (set.next()) {
-            item.setId(set.getInt("iditem"));
-            item.setIdList(set.getInt("idlist"));
-            item.setText(set.getString("text"));
-            item.setCreateDate(set.getDate("createdate").toLocalDate());
-            item.setUpdateDate(set.getDate("updatedate").toLocalDate());
-            item.setDone(set.getBoolean("isdone"));
+            setItem(item, set);
         }
 
         set.close();
@@ -95,16 +93,21 @@ public class ItemDAOImpl implements ItemDAO {
         return item;
     }
 
+    private void setItem(Item item, ResultSet set) throws SQLException {
+        item.setId(set.getInt("iditem"));
+        item.setIdList(set.getInt("idlist"));
+        item.setText(set.getString("text"));
+        item.setCreateDate(set.getDate("createdate").toLocalDate());
+        item.setUpdateDate(set.getDate("updatedate").toLocalDate());
+        item.setDone(set.getBoolean("isdone"));
+    }
+
     @Override
-    public void update(Item object) throws SQLException {
+    public void update(Item item) throws SQLException {
         String query = "UPDATE item SET idlist=?, text=?, createdate=?, updatedate=?, isdone=?  WHERE iditem=?";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, object.getIdList());
-        statement.setString(2, object.getText());
-        statement.setDate(3, Date.valueOf(object.getCreateDate()));
-        statement.setDate(4, Date.valueOf(object.getUpdateDate()));
-        statement.setBoolean(5, object.getDone());
-        statement.setInt(6, object.getId());
+        prepareStatement(item, statement);
+        statement.setInt(6, item.getId());
         statement.execute();
 
         statement.close();

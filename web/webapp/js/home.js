@@ -12,48 +12,58 @@ function sendRequest(criterion, idUser) {
         success: function (filteredLists) {
             document.getElementById("lists").innerHTML = "";
             $.each(filteredLists, function (index, list) {
-                var $li = $("<li>", {class: "list-group-item"}).prependTo("#lists");
-                var $span1 = $("<span>", {
-                    class: "form-text text-muted",
-                    text: "created: " + parseDate(list.createDate),
-                    style: "font-size: 10px;"
-                }).prependTo($li);
-                var $span2 = $("<span>", {
-                    class: "form-text text-muted",
-                    text: "updated: " + parseDate(list.updateDate),
-                    style: "font-size: 10px;"
-                }).prependTo($li);
-                var $div = $("<div>", {style: "text-align:right;"}).prependTo($li);
-                var $buttonDelete = $("<button>", {
-                    type: "button",
-                    class: "btn btn-primary",
-                    onclick: "deleteList(" + list.id.toString() + ")"
-                }).prependTo($div);
-                var $buttonEdit = $("<button>", {
-                    type: "button",
-                    class: "btn btn-primary",
-                    onclick: "prepareEditForm(" + list.id + ")",
-                    style: "margin-right:5px;"
-                }).prependTo($div);
-                $("<i>", {class: "fas fa-pencil-alt"}).prependTo($buttonEdit);
-                $("<i>", {class: "fas fa-trash-alt"}).prependTo($buttonDelete);
-                var $a = $("<a>", {
-                    href: "http://localhost:9090/ToBuyList_war_exploded/itemPage?idList=" + list.id.toString(),
-                    style: "text-decoration:none;color:black"
-                }).text(list.name).prependTo($li);
-                var $input = $("<input>", {
-                    type: "checkbox",
-                    id: list.id.toString(),
-                    onchange: "changeDone(" + list.id.toString() + ")",
-                    checked: list.isDone,
-                    style: "margin-right: 5px;"
-                }).prependTo($div);
+                generateList(list);
             });
         },
         error: function () {
             alert('error');
         }
     })
+}
+
+function generateList(list) {
+
+    var $li = $("<li>", {class: "list-group-item"}).prependTo("#lists");
+
+    var $span1 = $("<span>", {
+        class: "form-text text-muted",
+        text: "created: " + parseDate(list.createDate),
+    }).prependTo($li);
+
+    var $span2 = $("<span>", {
+        class: "form-text text-muted",
+        text: "updated: " + parseDate(list.updateDate),
+    }).prependTo($li);
+
+    var $div = $("<div>", {style: "text-align:right;"}).prependTo($li);
+
+    var $buttonDelete = $("<button>", {
+        type: "button",
+        class: "btn btn-primary",
+        onclick: "deleteList(" + list.id.toString() + ")"
+    }).prependTo($div);
+
+    $("<i>", {class: "fas fa-trash-alt"}).prependTo($buttonDelete);
+
+    var $buttonEdit = $("<button>", {
+        type: "button",
+        class: "btn btn-primary btn-edit",
+        onclick: "prepareEditForm(" + list.id + ")"
+    }).prependTo($div);
+
+    $("<i>", {class: "fas fa-pencil-alt"}).prependTo($buttonEdit);
+
+    var $input = $("<input>", {
+        type: "checkbox",
+        id: list.id.toString(),
+        onchange: "changeDone(" + list.id.toString() + ")",
+        checked: list.isDone
+    }).prependTo($div);
+
+    var $a = $("<a>", {
+        class: "list-name",
+        href: "http://localhost:9090/ToBuyList_war_exploded/itemPage?idList=" + list.id.toString()
+    }).text(list.name).prependTo($li);
 }
 
 function parseDate(jsonDate) {

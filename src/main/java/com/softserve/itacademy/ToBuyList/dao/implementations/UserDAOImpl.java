@@ -3,6 +3,7 @@ package com.softserve.itacademy.ToBuyList.dao.implementations;
 import com.softserve.itacademy.ToBuyList.dao.interfaces.UserDAO;
 import com.softserve.itacademy.ToBuyList.entity.User;
 import com.softserve.itacademy.ToBuyList.jdbc.DBConnection;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -59,34 +60,31 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void add(User object) throws SQLException {
+    public void add(User user) throws SQLException {
         String query = "INSERT INTO user (email, password, username) VALUES (?,?,?)";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, object.getEmail());
-        statement.setString(2, object.getPassword());
-        statement.setString(3, object.getUsername());
+        prepareStatement(user, statement);
         statement.execute();
 
         statement.close();
     }
 
+    private void prepareStatement(User user, PreparedStatement statement) throws SQLException {
+        statement.setString(1, user.getEmail());
+        statement.setString(2, user.getPassword());
+        statement.setString(3, user.getUsername());
+    }
+
     @Override
-    public User get(Integer id) throws SQLException {
-        String query = "SELECT iduser, email, password, username FROM user WHERE id=?";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, id);
-        ResultSet set = statement.executeQuery();
-        return getUser(statement, set);
+    public User get(Integer id) {
+        throw new NotImplementedException();
     }
 
     private User getUser(PreparedStatement statement, ResultSet set) throws SQLException {
         User user = new User();
 
         if (set.next()) {
-            user.setId(set.getInt("iduser"));
-            user.setEmail(set.getString("email"));
-            user.setPassword(set.getString("password"));
-            user.setUsername(set.getString("username"));
+            setUser(set, user);
         }
 
         set.close();
@@ -94,26 +92,20 @@ public class UserDAOImpl implements UserDAO {
         return user;
     }
 
-    @Override
-    public void update(User object) throws SQLException {
-        String query = "UPDATE user SET email=?, password=?, username=?  WHERE iduser=?";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setString(1, object.getEmail());
-        statement.setString(2, object.getPassword());
-        statement.setString(3, object.getUsername());
-        statement.setInt(4, object.getId());
-        statement.execute();
-
-        statement.close();
+    private void setUser(ResultSet set, User user) throws SQLException {
+        user.setId(set.getInt("iduser"));
+        user.setEmail(set.getString("email"));
+        user.setPassword(set.getString("password"));
+        user.setUsername(set.getString("username"));
     }
 
     @Override
-    public void delete(Integer id) throws SQLException {
-        String query = "DELETE FROM user WHERE iduser=?";
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, id);
-        statement.execute();
+    public void update(User user) {
+        throw new NotImplementedException();
+    }
 
-        statement.close();
+    @Override
+    public void delete(Integer id) {
+        throw new NotImplementedException();
     }
 }

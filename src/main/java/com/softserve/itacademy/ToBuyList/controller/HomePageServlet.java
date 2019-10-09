@@ -21,9 +21,8 @@ public class HomePageServlet extends HttpServlet {
         ListService listService = new ListServiceImpl();
         HttpSession httpSession = req.getSession(false);
 
-        Integer idUser = (Integer) httpSession.getAttribute("id");
-
-        ArrayList<List> listsByUser = listService.getListsByUser(idUser);
+        ArrayList<List> listsByUser = listService
+                .getListsByUser((Integer) httpSession.getAttribute("id"));
         req.setAttribute("listsByUser", listsByUser);
 
         req.getRequestDispatcher("webapp/pages/home.jsp").forward(req, resp);

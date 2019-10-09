@@ -12,45 +12,56 @@ function sendRequest(criterion, idList) {
         success: function (filteredItems) {
             document.getElementById("items").innerHTML = "";
             $.each(filteredItems, function (index, item) {
-                var $li = $("<li>", {class: "list-group-item"}).prependTo("#items");
-                var $span1 = $("<span>", {
-                    class: "form-text text-muted",
-                    text: "created: " + parseDate(item.createDate),
-                    style: "font-size: 10px;"
-                }).prependTo($li);
-                var $span2 = $("<span>", {
-                    class: "form-text text-muted",
-                    text: "updated: " + parseDate(item.updateDate),
-                    style: "font-size: 10px;"
-                }).prependTo($li);
-                var $div = $("<div>", {style: "text-align:right;"}).prependTo($li);
-                var $buttonDelete = $("<button>", {
-                    type: "button",
-                    class: "btn btn-primary",
-                    onclick: "deleteItem(" + item.id.toString() + ")"
-                }).prependTo($div);
-                var $buttonEdit = $("<button>", {
-                    type: "button",
-                    class: "btn btn-primary",
-                    onclick: "prepareEditForm(" + item.id + "," + item.idList + ")",
-                    style: "margin-right:5px;"
-                }).prependTo($div);
-                $("<i>", {class: "fas fa-trash-alt"}).prependTo($buttonDelete);
-                $("<i>", {class: "fas fa-pencil-alt"}).prependTo($buttonEdit);
-                var $input = $("<input>", {
-                    type: "checkbox",
-                    id: item.id.toString(),
-                    onchange: "changeDone(" + item.id + ")",
-                    checked: item.isDone,
-                    style: "margin-right:5px;"
-                }).prependTo($div);
-                var $label = $("<label>", {text: item.text, for: item.id.toString()}).prependTo($li);
+                generateItem(item);
             });
         },
         error: function () {
             alert('error');
         }
     })
+}
+
+function generateItem(item) {
+
+    var $li = $("<li>", {class: "list-group-item"}).prependTo("#items");
+
+    var $span1 = $("<span>", {
+        class: "form-text text-muted",
+        text: "created: " + parseDate(item.createDate)
+    }).prependTo($li);
+
+    var $span2 = $("<span>", {
+        class: "form-text text-muted",
+        text: "updated: " + parseDate(item.updateDate)
+    }).prependTo($li);
+
+    var $div = $("<div>", {class: "list-buttons"}).prependTo($li);
+
+    var $buttonDelete = $("<button>", {
+        type: "button",
+        class: "btn btn-primary",
+        onclick: "deleteItem(" + item.id.toString() + ")"
+    }).prependTo($div);
+
+    $("<i>", {class: "fas fa-trash-alt"}).prependTo($buttonDelete);
+
+    var $buttonEdit = $("<button>", {
+        type: "button",
+        class: "btn btn-primary btn-edit",
+        onclick: "prepareEditForm(" + item.id + "," + item.idList + ")"
+    }).prependTo($div);
+
+    $("<i>", {class: "fas fa-pencil-alt"}).prependTo($buttonEdit);
+
+    var $input = $("<input>", {
+        type: "checkbox",
+        class: "checkbox-item",
+        id: item.id.toString(),
+        onchange: "changeDone(" + item.id + ")",
+        checked: item.isDone
+    }).prependTo($div);
+
+    var $label = $("<label>", {text: item.text, for: item.id.toString()}).prependTo($li);
 }
 
 function parseDate(jsonDate) {

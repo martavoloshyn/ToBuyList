@@ -20,7 +20,7 @@
     <script src="https://kit.fontawesome.com/b9192cac7d.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/webapp/js/item.js"></script>
-    <link href="${pageContext.request.contextPath}/webapp/css/item.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/webapp/css/item-home.css" rel="stylesheet">
 
 </head>
 <body>
@@ -52,7 +52,7 @@
                 </div>
             </div>
 
-            <form action="addItem?idList=${idList}" method="post" style="margin-top:10px;">
+            <form class="inputForm" action="addItem?idList=${idList}" method="post">
                 <div class="add-items d-flex"><input type="text" name="itemText" class="form-control todo-list-input"
                                                      placeholder="What do you need to buy?">
                     <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn"
@@ -61,7 +61,7 @@
                 </div>
             </form>
 
-            <form id="editItemForm" method="post" style="margin-top:10px;" hidden>
+            <form class="inputForm" id="editItemForm" method="post" hidden>
                 <div class="add-items d-flex"><input type="text" name="newItemText" class="form-control todo-list-input"
                                                      placeholder="What is your edited item?">
                     <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn"

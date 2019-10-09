@@ -19,7 +19,7 @@ public class SignInServlet extends HttpServlet {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
 
-        if (userService.isValid(email, password)) {
+        if (userService.isValidAccount(email, password)) {
             HttpSession httpSession = req.getSession();
             httpSession.setAttribute("id", userService.getUserByEmail(email).getId());
 

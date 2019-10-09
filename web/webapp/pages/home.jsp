@@ -20,6 +20,7 @@
     <script src="https://kit.fontawesome.com/b9192cac7d.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/webapp/js/home.js"></script>
+    <link href="${pageContext.request.contextPath}/webapp/css/item-home.css" rel="stylesheet">
 
 </head>
 <body>
@@ -47,7 +48,7 @@
                 </div>
             </div>
 
-            <form action="addList" method="post" style="margin-top:10px;">
+            <form class="inputForm" action="addList" method="post">
                 <div class="add-items d-flex"><input type="text" name="listName" class="form-control todo-list-input"
                                                      placeholder="What list do you need to create?">
                     <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn"
@@ -56,7 +57,7 @@
                 </div>
             </form>
 
-            <form id="editListForm" method="post" style="margin-top:10px;" hidden>
+            <form class="inputForm" id="editListForm" method="post" hidden>
                 <div class="add-items d-flex"><input type="text" name="newListName" class="form-control todo-list-input"
                                                      placeholder="What is your edited item?">
                     <button type="submit" class="add btn btn-primary font-weight-bold todo-list-add-btn"

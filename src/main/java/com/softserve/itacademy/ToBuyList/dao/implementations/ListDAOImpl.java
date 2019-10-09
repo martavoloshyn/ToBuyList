@@ -36,19 +36,27 @@ public class ListDAOImpl implements ListDAO {
 
         ResultSet set = statement.executeQuery();
         while (set.next()) {
-            List list = new List();
-            list.setId(set.getInt("idlist"));
-            list.setIdUser(set.getInt("iduser"));
-            list.setName(set.getString("name"));
-            list.setCreateDate(set.getDate("createdate").toLocalDate());
-            list.setUpdateDate(set.getDate("updatedate").toLocalDate());
-            list.setDone(set.getBoolean("isdone"));
-            lists.add(list);
+            lists.add(getNextList(set));
         }
 
         set.close();
         statement.close();
         return lists;
+    }
+
+    private List getNextList(ResultSet set) throws SQLException {
+        List list = new List();
+        prepareStatement(set, list);
+        return list;
+    }
+
+    private void prepareStatement(ResultSet set, List list) throws SQLException {
+        list.setId(set.getInt("idlist"));
+        list.setIdUser(set.getInt("iduser"));
+        list.setName(set.getString("name"));
+        list.setCreateDate(set.getDate("createdate").toLocalDate());
+        list.setUpdateDate(set.getDate("updatedate").toLocalDate());
+        list.setDone(set.getBoolean("isdone"));
     }
 
     @Override
@@ -60,17 +68,21 @@ public class ListDAOImpl implements ListDAO {
     }
 
     @Override
-    public void add(List object) throws SQLException {
+    public void add(List list) throws SQLException {
         String query = "INSERT INTO list (iduser, name, createdate,updatedate, isdone ) VALUES (?,?,?,?,?)";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, object.getIdUser());
-        statement.setString(2, object.getName());
-        statement.setDate(3, Date.valueOf(object.getCreateDate()));
-        statement.setDate(4, Date.valueOf(object.getUpdateDate()));
-        statement.setBoolean(5, object.getDone());
+        prepareStatement(list, statement);
         statement.execute();
 
         statement.close();
+    }
+
+    private void prepareStatement(List list, PreparedStatement statement) throws SQLException {
+        statement.setInt(1, list.getIdUser());
+        statement.setString(2, list.getName());
+        statement.setDate(3, Date.valueOf(list.getCreateDate()));
+        statement.setDate(4, Date.valueOf(list.getUpdateDate()));
+        statement.setBoolean(5, list.getDone());
     }
 
     @Override
@@ -82,12 +94,7 @@ public class ListDAOImpl implements ListDAO {
 
         ResultSet set = statement.executeQuery();
         if (set.next()) {
-            list.setId(set.getInt("idlist"));
-            list.setIdUser(set.getInt("iduser"));
-            list.setName(set.getString("name"));
-            list.setCreateDate(set.getDate("createdate").toLocalDate());
-            list.setUpdateDate(set.getDate("updatedate").toLocalDate());
-            list.setDone(set.getBoolean("isdone"));
+            prepareStatement(set, list);
         }
 
         set.close();
@@ -99,11 +106,7 @@ public class ListDAOImpl implements ListDAO {
     public void update(List object) throws SQLException {
         String query = "UPDATE list SET iduser=?, name=?, createdate=?, updatedate=?, isdone=?  WHERE idlist=?";
         PreparedStatement statement = connection.prepareStatement(query);
-        statement.setInt(1, object.getIdUser());
-        statement.setString(2, object.getName());
-        statement.setDate(3, Date.valueOf(object.getCreateDate()));
-        statement.setDate(4, Date.valueOf(object.getUpdateDate()));
-        statement.setBoolean(5, object.getDone());
+        prepareStatement(object, statement);
         statement.setInt(6, object.getId());
         statement.execute();
 

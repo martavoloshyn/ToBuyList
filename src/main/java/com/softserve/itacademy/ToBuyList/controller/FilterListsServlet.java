@@ -13,17 +13,15 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 
-//import com.alibaba.fastjson.JSON;
-
 @WebServlet("/filterLists")
 public class FilterListsServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         ListServiceImpl listService = new ListServiceImpl();
         HttpSession httpSession = req.getSession(false);
 
-        Integer idUser = (Integer) httpSession.getAttribute("id");
         String criterion = req.getParameter("criterion");
+        Integer idUser = (Integer) httpSession.getAttribute("id");
 
         ArrayList<List> requestedLists = listService.filter(criterion, idUser);
         String json = new Gson().toJson(requestedLists);

@@ -50,17 +50,11 @@ public class ItemServiceImpl implements ItemService {
     public ArrayList<Item> filter(String criterion, Integer idList) {
         if (criterion.equals("all")) {
             return getItemsByList(idList);
-        }
-        boolean isDone = Boolean.parseBoolean(criterion);
-
-        ArrayList<Item> filteredItems = new ArrayList<>();
-        if (isDone) {
-            filteredItems = getDoneItemsByList(idList);
+        } else if (Boolean.parseBoolean(criterion)) {
+            return getDoneItemsByList(idList);
         } else {
-            filteredItems = getUndoneItemsByList(idList);
+            return getUndoneItemsByList(idList);
         }
-
-        return filteredItems;
     }
 
     @Override
@@ -72,8 +66,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public void createItem(Integer idList, String newItemText) {
-        Item newItem = new Item(idList, newItemText, LocalDate.now(), LocalDate.now(), false);
-        add(newItem);
+        add(new Item(idList, newItemText, LocalDate.now(), LocalDate.now(), false));
     }
 
     @Override

@@ -1,0 +1,24 @@
+.inputForm {
+    margin-top:10px;
+}
+
+.text-muted {
+    font-size: 10px;
+}
+
+.list-buttons {
+    text-align:right;
+}
+
+.btn-edit {
+    margin-right:5px;
+}
+
+.checkbox-item {
+    margin-right:5px;
+}
+
+.list-name {
+    text-decoration:none;
+    color:black;
+}

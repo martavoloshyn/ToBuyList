@@ -31,17 +31,11 @@ public class ListServiceImpl implements ListService {
 
         if (criterion.equals("all")) {
             return getListsByUser(idUser);
-        }
-        boolean isDone = Boolean.parseBoolean(criterion);
-
-        ArrayList<List> filteredLists = new ArrayList<>();
-        if (isDone) {
-            filteredLists = getDoneListsByUser(idUser);
+        } else if (Boolean.parseBoolean(criterion)) {
+            return getDoneListsByUser(idUser);
         } else {
-            filteredLists = getUndoneListsByUser(idUser);
+            return getUndoneListsByUser(idUser);
         }
-
-        return filteredLists;
     }
 
     @Override
@@ -53,8 +47,7 @@ public class ListServiceImpl implements ListService {
 
     @Override
     public void createList(Integer idUser, String newListName) {
-        List newList = new List(idUser, newListName, LocalDate.now(), LocalDate.now(), false);
-        add(newList);
+        add(new List(idUser, newListName, LocalDate.now(), LocalDate.now(), false));
     }
 
     @Override
@@ -78,8 +71,7 @@ public class ListServiceImpl implements ListService {
     @Override
     public ArrayList<List> getUndoneListsByUser(Integer idUser) {
         try {
-            return
-                    listDAO.getUndoneListsByUser(idUser);
+            return listDAO.getUndoneListsByUser(idUser);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -87,9 +79,9 @@ public class ListServiceImpl implements ListService {
     }
 
     @Override
-    public void add(List object) {
+    public void add(List list) {
         try {
-            listDAO.add(object);
+            listDAO.add(list);
         } catch (SQLException e) {
             e.printStackTrace();
         }
