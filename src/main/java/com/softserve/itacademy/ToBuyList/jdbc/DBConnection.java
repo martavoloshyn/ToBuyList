@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    private static final String DB_URL = "jdbc:mysql://localhost/ToBuyList?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String DB_URL = "jdbc:mysql://localhost/ToBuyList";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "rota2000";
 
